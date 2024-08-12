@@ -69,7 +69,7 @@ class _RegisterPageState extends State<RegisterPage> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   const Icon(
-                    Icons.elderly,
+                    Icons.handshake,
                     size: 100,
                   ),
                   // Welcome Message

@@ -42,6 +42,9 @@ class _DailyCheckInScreenState extends ConsumerState<DailyCheckInScreen> {
   Widget build(BuildContext context) {
     final currentTheme = ref.watch(themeNotifierProvider);
 
+    final screenWidth = MediaQuery.of(context).size.width;
+    final buttonWidth = screenWidth * 0.90; // 40% of screen width
+
     return Scaffold(
       body: Stack(
         children: [
@@ -54,7 +57,6 @@ class _DailyCheckInScreenState extends ConsumerState<DailyCheckInScreen> {
           ),
           Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
-            // mainAxisAlignment: MainAxisAlignment.center,
             children: [
               CustomAppBar(
                   title: "Daily Check-In",
@@ -67,31 +69,45 @@ class _DailyCheckInScreenState extends ConsumerState<DailyCheckInScreen> {
                   onPressed: () {
                     Navigator.of(context).pop();
                   }),
-              Padding(
-                padding: const EdgeInsets.all(16.0),
-                child: Text(
-                  questions[currentQuestionIndex].title,
-                  style: const TextStyle(
-                      fontSize: 24.0,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.white),
+              Expanded(
+                child: Scrollbar(
+                  child: SingleChildScrollView(
+                    child: Column(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.all(16.0),
+                          child: Text(
+                            questions[currentQuestionIndex].title,
+                            style: TextStyle(
+                                fontSize: 24.0,
+                                fontWeight: FontWeight.bold,
+                                color: currentTheme.textColor),
+                          ),
+                        ),
+                        const SizedBox(height: 20),
+                        ...questions[currentQuestionIndex]
+                            .options
+                            .map((option) {
+                          return Padding(
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 16.0, vertical: 4.0),
+                            child: ElevatedButton(
+                              style: ElevatedButton.styleFrom(
+                                minimumSize: Size(buttonWidth, 42),
+                                backgroundColor: currentTheme.tabBarColor,
+                                foregroundColor:
+                                    currentTheme.tabBarSelectedItemColor,
+                              ),
+                              onPressed: () => nextQuestion(option),
+                              child: Text(option),
+                            ),
+                          );
+                        }),
+                      ],
+                    ),
+                  ),
                 ),
               ),
-              const SizedBox(height: 20),
-              ...questions[currentQuestionIndex].options.map((option) {
-                return Padding(
-                  padding: const EdgeInsets.symmetric(
-                      horizontal: 16.0, vertical: 4.0),
-                  child: ElevatedButton(
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: currentTheme.tabBarColor,
-                      foregroundColor: currentTheme.tabBarSelectedItemColor,
-                    ),
-                    onPressed: () => nextQuestion(option),
-                    child: Text(option),
-                  ),
-                );
-              }),
             ],
           ),
         ],

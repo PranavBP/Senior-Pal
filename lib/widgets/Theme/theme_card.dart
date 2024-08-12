@@ -19,7 +19,7 @@ class ThemeCard extends StatelessWidget {
           borderRadius: BorderRadius.circular(15.0),
         ),
         child: Container(
-          height: 150,
+          // height: 150,
           decoration: BoxDecoration(
             gradient: LinearGradient(colors: theme.backgroundGradient),
             // image: DecorationImage(
@@ -30,11 +30,17 @@ class ThemeCard extends StatelessWidget {
           child: Stack(
             children: [
               FadeInImage(
-                placeholder: MemoryImage(kTransparentImage), 
+                placeholder: MemoryImage(kTransparentImage),
                 image: AssetImage(theme.backgroundImage),
                 fit: BoxFit.cover,
-                height: 150,
+                // height: 150,
                 width: double.infinity,
+              ),
+              Container(
+                color: Colors.black
+                    .withOpacity(0.2), // Adjust the opacity as needed
+                width: double.infinity,
+                height: double.infinity,
               ),
               Center(
                 child: Text(

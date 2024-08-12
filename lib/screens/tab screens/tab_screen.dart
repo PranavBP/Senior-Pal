@@ -4,6 +4,7 @@ import 'package:seniorpal/provider/theme_provider.dart';
 
 import 'package:seniorpal/screens/tab%20screens/activity_screen.dart';
 import 'package:seniorpal/screens/home/home_screen.dart';
+import 'package:seniorpal/screens/tab%20screens/mindfulness/mindfulness_screen.dart';
 import 'package:seniorpal/screens/tab%20screens/mindfulness_screen.dart';
 import 'package:seniorpal/screens/tab%20screens/reflections_screen.dart';
 import 'package:seniorpal/screens/tab%20screens/resources_screen.dart';
@@ -60,9 +61,12 @@ class _TabScreenState extends ConsumerState<TabScreen> {
     final List<Widget> pages = <Widget>[
       const HomePage(),
       const ActivityScreen(),
-      const VideoPlayerScreen(
-          videoUrl:
-              "https://flutter.github.io/assets-for-api-docs/assets/videos/butterfly.mp4"),
+      const MindfulnessScreen(),
+      // const VideoPlayerScreen(
+      //   videoUrl:
+      //       "https://flutter.github.io/assets-for-api-docs/assets/videos/butterfly.mp4",
+      //   dataSource: DataSourceType.network,
+      // ),
       const ResourcesScreen(),
       const ReflectionsScreen()
     ];

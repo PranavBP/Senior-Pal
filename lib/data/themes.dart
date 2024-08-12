@@ -3,7 +3,8 @@ import 'package:seniorpal/models/theme.dart';
 
 final List<ThemeModel> themes = [
   ThemeModel(
-    name: 'PatriotNight',
+    name: 'Patriot',
+    themeMode: Mode.dark,
     backgroundGradient: [
       const Color(0xFF3D2821),
       const Color(0xFF1A110A),
@@ -17,21 +18,23 @@ final List<ThemeModel> themes = [
     textColor: const Color(0xFFE6E6CC),
   ),
   ThemeModel(
-    name: 'PatriotDay',
+    name: 'Patriot',
+    themeMode: Mode.light,
     backgroundGradient: [
       const Color(0xFF0A3061),
       const Color(0xFFB01A43),
     ],
     borderColor: Colors.white,
     backgroundColor: const Color(0xFFB01A43),
-    tabBarColor: const Color(0xFF0A3061).withOpacity(0.7),
+    tabBarColor: const Color(0xFF0A3061),
     tabBarSelectedItemColor: Colors.white,
     tabBarUnselectedItemColor: Colors.grey,
     textColor: Colors.white,
     backgroundImage: 'assets/images/flag.jpg',
   ),
   ThemeModel(
-    name: 'FallDay',
+    name: 'Fall',
+    themeMode: Mode.dark,
     backgroundGradient: [
       const Color(0xFFE8B007),
       const Color(0xFF8A8210),
@@ -45,7 +48,8 @@ final List<ThemeModel> themes = [
     backgroundImage: 'assets/images/fall2.jpg',
   ),
   ThemeModel(
-    name: 'FallNight',
+    name: 'Fall',
+    themeMode: Mode.light,
     backgroundGradient: [
       const Color(0xFFE8AB42),
       const Color(0xFFE68724),
@@ -58,50 +62,69 @@ final List<ThemeModel> themes = [
     backgroundImage: 'assets/images/fall.jpg',
     textColor: const Color(0xFFF7F7F7),
   ),
-  // ThemeModel(
-  //   name: 'WinterDay',
-  //   backgroundGradient: [
-  //     Color(0xFF526D82),
-  //     Color(0xFF9EB2BF),
-  //   ],
-  //   borderColor: Color(0xFF273743),
-  //   backgroundColor: Color(0xFFDDE6ED),
-  //   tabBarColor: Color(0xFF273743),
-  //   backgroundImage: 'assets/images/winter2.png',
-  // ),
-  // ThemeModel(
-  //   name: 'WinterNight',
-  //   backgroundGradient: [
-  //     Color(0xFFA6D7E8),
-  //     Color(0xFF566CBA),
-  //   ],
-  //   borderColor: Color(0xFF0A2447),
-  //   backgroundColor: Color(0xFFA6D7E8),
-  //   tabBarColor: Color(0xFF0A2447),
-  //   backgroundImage: 'assets/images/winter.png',
-  // ),
-  // ThemeModel(
-  //   name: 'SpringNight',
-  //   backgroundGradient: [
-  //     Color(0xFFFFEDD0),
-  //     Color(0xFFFFDFCC),
-  //   ],
-  //   borderColor: Color(0xFFFFEDD0),
-  //   backgroundColor: Color(0xFFFFEDD0),
-  //   tabBarColor: Color(0xFFFFB9CC),
-  //   backgroundImage: 'assets/images/spring2.png',
-  // ),
-  // ThemeModel(
-  //   name: 'SpringDay',
-  //   backgroundGradient: [
-  //     Color(0xFFF2FDF1),
-  //     Color(0xFFFFE6E6),
-  //   ],
-  //   borderColor: Color(0xFFFF99CC),
-  //   backgroundColor: Color(0xFFFFE6E6),
-  //   tabBarColor: Color(0xFFA8DF90),
-  //   backgroundImage: 'assets/images/spring.png',
-  // ),
+  ThemeModel(
+    name: 'Winter',
+    themeMode: Mode.dark,
+    backgroundGradient: [
+      const Color(0xFF526D82),
+      const Color(0xFF9EB2BF),
+    ],
+    borderColor: const Color(0xFF273743),
+    backgroundColor: const Color(0xFF526D82),
+    tabBarColor: const Color(0xFF273743),
+    tabBarSelectedItemColor: Colors.white,
+    tabBarUnselectedItemColor: const Color(0xFF9EB2BF),
+    backgroundImage: 'assets/images/winter2.jpg',
+    textColor: const Color(0xFFDEE6EE),
+  ),
+  ThemeModel(
+    name: 'Winter',
+    themeMode: Mode.light,
+    backgroundGradient: [
+      const Color(0xFFA6D7E8),
+      const Color(0xFF566CBA),
+    ],
+    borderColor: const Color(0xFF0A2447),
+    backgroundColor: const Color(0xFF566CBA),
+    tabBarColor: const Color(0xFF0A2447),
+    tabBarSelectedItemColor: const Color(0xFFA6D7E8),
+    tabBarUnselectedItemColor: Colors.grey,
+    backgroundImage: 'assets/images/winter.jpg',
+    textColor: const Color(0xFF0A2447),
+  ),
+  ThemeModel(
+    name: 'Spring',
+    themeMode: Mode.dark,
+    backgroundGradient: [
+      // const Color(0xFFFFEDD0),
+      const Color.fromARGB(255, 111, 41, 70),
+      const Color(0xFF181716),
+      // const Color(0xFFFFEDD0),
+      // const Color(0xFFFFDFCC),
+    ],
+    borderColor: const Color(0xFFFFEDD0),
+    backgroundColor: const Color(0xFF181716), //const Color(0xFFFFEDD0),
+    tabBarColor: const Color.fromARGB(255, 251, 126, 159),
+    tabBarSelectedItemColor: Colors.white,
+    tabBarUnselectedItemColor: const Color(0xFFFFDFCC),
+    backgroundImage: 'assets/images/spring2.jpg',
+    textColor: const Color.fromARGB(255, 251, 126, 159),
+  ),
+  ThemeModel(
+    name: 'Spring',
+    themeMode: Mode.light,
+    backgroundGradient: [
+      const Color(0xFFF2FDF1),
+      const Color(0xFFFFE6E6),
+    ],
+    borderColor: const Color(0xFFFF99CC),
+    backgroundColor: const Color(0xFFFFE6E6),
+    tabBarColor: const Color.fromARGB(255, 153, 222, 123),
+    tabBarSelectedItemColor: Colors.white,
+    tabBarUnselectedItemColor: const Color(0xFFF2FDF1),
+    backgroundImage: 'assets/images/spring.jpg',
+    textColor: const Color(0xFFFF99CC),
+  ),
   // ThemeModel(
   //   name: 'SummerNight',
   //   backgroundGradient: [

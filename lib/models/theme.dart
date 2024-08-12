@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 
+enum Mode { light, dark }
+
 class ThemeModel {
   final String name;
+  final Mode themeMode;
   final List<Color> backgroundGradient;
   final Color borderColor;
   final Color backgroundColor;
@@ -16,6 +19,7 @@ class ThemeModel {
 
   ThemeModel({
     required this.name,
+    required this.themeMode,
     required this.backgroundGradient,
     required this.borderColor,
     required this.backgroundColor,

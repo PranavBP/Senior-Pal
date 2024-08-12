@@ -95,21 +95,31 @@ class _HomePageState extends ConsumerState<HomePage> {
           ),
           // The View Content must come here
           Positioned.fill(
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  SizedBox(height: MediaQuery.of(context).size.height * 0.5),
-                  GreetingText(userFullName: _userFullName),
-                  const SizedBox(height: 8),
-                  HomeQuote(
-                    quote: _dailyQuote,
+            child: Column(
+              children: [
+                SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.5,
+                ),
+                Expanded(
+                  child: Scrollbar(
+                    child: SingleChildScrollView(
+                      padding: const EdgeInsets.all(8.0),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          GreetingText(userFullName: _userFullName),
+                          const SizedBox(height: 8),
+                          HomeQuote(
+                            quote: _dailyQuote,
+                          ),
+                          const SizedBox(height: 16),
+                          const HomeButtons()
+                        ],
+                      ),
+                    ),
                   ),
-                  const SizedBox(height: 16),
-                  const HomeButtons()
-                ],
-              ),
+                ),
+              ],
             ),
           )
         ],

@@ -10,30 +10,35 @@ class HomeButtons extends ConsumerWidget {
 
   void _openThemesOverlay(BuildContext context) {
     showModalBottomSheet(
-        useSafeArea: true,
-        isScrollControlled: true,
-        shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.vertical(
-            top: Radius.circular(20.0),
-          ),
+      useSafeArea: true,
+      isScrollControlled: true,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(
+          top: Radius.circular(20.0),
         ),
-        clipBehavior: Clip.antiAliasWithSaveLayer,
-        context: context,
-        builder: (ctx) => const ThemeSelectorScreen());
+      ),
+      clipBehavior: Clip.antiAliasWithSaveLayer,
+      context: context,
+      builder: (ctx) => const ThemeSelectorScreen(),
+    );
   }
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
     final currentTheme = ref.watch(themeNotifierProvider);
 
+    final screenWidth = MediaQuery.of(context).size.width;
+    final buttonWidth = screenWidth * 0.48; // 40% of screen width
+
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
         ElevatedButton.icon(
           style: ElevatedButton.styleFrom(
-            backgroundColor: currentTheme.tabBarColor,
-            // This changes the color of the text and icon
-          ),
+              backgroundColor: currentTheme.tabBarColor,
+              maximumSize: Size(buttonWidth, 42)
+              // This changes the color of the text and icon
+              ),
           onPressed: () {
             Navigator.push(
               context,
@@ -54,8 +59,8 @@ class HomeButtons extends ConsumerWidget {
         const SizedBox(width: 8),
         ElevatedButton.icon(
           style: ElevatedButton.styleFrom(
-            backgroundColor: currentTheme.tabBarColor,
-          ),
+              backgroundColor: currentTheme.tabBarColor,
+              maximumSize: Size(buttonWidth, 42)),
           onPressed: () {
             _openThemesOverlay(context);
           },
@@ -64,7 +69,7 @@ class HomeButtons extends ConsumerWidget {
             color: currentTheme.tabBarUnselectedItemColor,
           ),
           label: Text(
-            'View Themes',
+            'Choose Theme',
             style: TextStyle(color: currentTheme.tabBarUnselectedItemColor),
           ),
         ),

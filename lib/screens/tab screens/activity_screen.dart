@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+
 import 'package:seniorpal/provider/activity_provider.dart';
 import 'package:seniorpal/provider/theme_provider.dart';
 import 'package:seniorpal/widgets/Activity/activity_card.dart';
@@ -35,10 +36,13 @@ class _ActivityScreenState extends ConsumerState<ActivityScreen> {
         itemCount: activities.length,
         itemBuilder: (context, index) {
           return ActivityCard(
-              activity: activities[index],
-              onSelect: () {
-                print("Clicked activity");
-              });
+            activity: activities[index],
+            // onSelect: () {
+            //   Navigator.push(context, MaterialPageRoute(builder: (ctx) {
+            //     return ModuleScreen(modules: activities[index].modules);
+            //   }));
+            // }
+          );
         },
       ),
     );

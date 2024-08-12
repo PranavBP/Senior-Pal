@@ -1,11 +1,17 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:video_player/video_player.dart';
 import 'package:chewie/chewie.dart';
 
+enum DataSourceType { asset, network, file, contentUri }
+
 class VideoPlayerScreen extends StatefulWidget {
   final String videoUrl;
+  final DataSourceType dataSource;
 
-  const VideoPlayerScreen({super.key, required this.videoUrl});
+  const VideoPlayerScreen(
+      {super.key, required this.videoUrl, required this.dataSource});
 
   @override
   State<StatefulWidget> createState() {
@@ -27,16 +33,38 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
 
   Future<void> _initializeVideoPlayer() async {
     try {
-      _videoPlayerController =
-          VideoPlayerController.networkUrl(Uri.parse(widget.videoUrl));
+      switch (widget.dataSource) {
+        case DataSourceType.asset:
+          _videoPlayerController = VideoPlayerController.asset(widget.videoUrl);
+          break;
+        case DataSourceType.network:
+          _videoPlayerController =
+              VideoPlayerController.networkUrl(Uri.parse(widget.videoUrl));
+          break;
+        case DataSourceType.file:
+          _videoPlayerController =
+              VideoPlayerController.file(File(widget.videoUrl));
+          break;
+        case DataSourceType.contentUri:
+          _videoPlayerController =
+              VideoPlayerController.contentUri(Uri.parse(widget.videoUrl));
+          break;
+      }
+
       await _videoPlayerController.initialize();
       setState(() {
         _chewieController = ChewieController(
-          videoPlayerController: _videoPlayerController,
-          aspectRatio: _videoPlayerController.value.aspectRatio,
-          autoPlay: true,
-          looping: true,
-        );
+            videoPlayerController: _videoPlayerController,
+            aspectRatio: _videoPlayerController.value.aspectRatio,
+            autoPlay: true,
+            looping: false,
+            showOptions: false,
+            showControls: true,
+            allowFullScreen: true,
+            fullScreenByDefault: true,
+
+            // customControls: const CustomControls()
+            );
         _isVideoPlayerInitialized = true;
       });
     } catch (e) {
@@ -57,16 +85,19 @@ class _VideoPlayerScreenState extends State<VideoPlayerScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Mindfulness'),
+        title: const Text('Weekly Modules'),
       ),
-      body: Center(
-        child: _error != null
-            ? Text('Error: $_error')
-            : _isVideoPlayerInitialized
-                ? Chewie(
-                    controller: _chewieController!,
-                  )
-                : const CircularProgressIndicator(),
+      body: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Center(
+          child: _error != null
+              ? Text('Error: $_error')
+              : _isVideoPlayerInitialized
+                  ? Chewie(
+                      controller: _chewieController!,
+                    )
+                  : const CircularProgressIndicator(),
+        ),
       ),
     );
   }

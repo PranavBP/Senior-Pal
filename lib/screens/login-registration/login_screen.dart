@@ -80,7 +80,7 @@ class _LoginPageState extends State<LoginPage> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 const Icon(
-                  Icons.elderly,
+                  Icons.handshake,
                   size: 100,
                 ),
                 // Welcome Message

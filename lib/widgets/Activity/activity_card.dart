@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:seniorpal/models/activity.dart';
+import 'package:seniorpal/screens/modules_screen.dart';
 import 'package:transparent_image/transparent_image.dart';
 
 class ActivityCard extends StatelessWidget {
   final Activity activity;
-  final VoidCallback onSelect;
+  // final VoidCallback onSelect;
 
-  const ActivityCard(
-      {super.key, required this.activity, required this.onSelect});
+  const ActivityCard({super.key, required this.activity});
 
   @override
   Widget build(BuildContext context) {
@@ -17,7 +17,11 @@ class ActivityCard extends StatelessWidget {
       clipBehavior: Clip.hardEdge,
       elevation: 3.0,
       child: InkWell(
-        onTap: onSelect,
+        onTap: () {
+          Navigator.push(context, MaterialPageRoute(builder: (ctx) {
+            return ModuleScreen(activity: activity);
+          }));
+        },
         child: Stack(
           children: [
             FadeInImage(
@@ -61,21 +65,21 @@ class ActivityCard extends StatelessWidget {
                 ),
               ),
             ),
-            Positioned(
-              top: 8,
-              right: 8,
-              child: activity.completed
-                  ? const Icon(
-                      Icons.check_circle,
-                      color: Colors.white,
-                      size: 35,
-                    )
-                  : const Icon(
-                      Icons.circle_outlined,
-                      color: Colors.white,
-                      size: 35,
-                    ),
-            )
+            // Positioned(
+            //   top: 8,
+            //   right: 8,
+            //   child: activity.completed
+            //       ? const Icon(
+            //           Icons.check_circle,
+            //           color: Colors.white,
+            //           size: 35,
+            //         )
+            //       : const Icon(
+            //           Icons.circle_outlined,
+            //           color: Colors.white,
+            //           size: 35,
+            //         ),
+            // )
           ],
         ),
       ),

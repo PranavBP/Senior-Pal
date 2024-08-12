@@ -29,13 +29,4 @@ const List<Question> questions = [
     title: "5. My social relationships have been supportive and rewarding",
     options: ["Always", "Often", "Sometimes", "Rarely", "Never"],
   ),
-  Question(
-    title: "6. Did you take your medication yesterday?",
-    options: [
-      "I don't take any medication",
-      "I took all of my medication",
-      "I didn't take any of my medication",
-      "I took some of my medication"
-    ],
-  ),
 ];
