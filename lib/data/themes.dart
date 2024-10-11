@@ -125,92 +125,171 @@ final List<ThemeModel> themes = [
     backgroundImage: 'assets/images/spring.jpg',
     textColor: const Color(0xFFFF99CC),
   ),
+  ThemeModel(
+    name: 'Summer',
+    themeMode: Mode.dark,
+    backgroundGradient: [
+      const Color(0xFFE0E09E),
+      const Color(0xFFF3B59F),
+    ],
+    borderColor: const Color(0xFFE0646B),
+    backgroundColor: const Color(0xFFF3B59F),
+    tabBarColor: const Color(0xFFBF5A83),
+    tabBarSelectedItemColor: const Color(0xFFE0E09E),
+    tabBarUnselectedItemColor: const Color(0xFFF3B59F),
+    backgroundImage: 'assets/images/summer2.jpg',
+    textColor: const Color(0xFFE0646B),
+  ),
+  ThemeModel(
+    name: 'Summer',
+    themeMode: Mode.light,
+    backgroundGradient: [
+      const Color(
+          0xFFB0DFC0), // Softer green to avoid overlap with the text color
+      const Color(0xFF78E2EC), // Retained the light blue for a summer vibe
+    ],
+    borderColor: const Color(0xFF98B27F), // Keep the border color
+    backgroundColor: const Color(
+        0xFF78E2EC), // Use the second gradient color for consistency
+    tabBarColor: const Color(0xFF6FCCA9), // Keep the same tab bar color
+    tabBarSelectedItemColor:
+        Colors.white, // White selected tab item for good contrast
+    tabBarUnselectedItemColor:
+        const Color.fromARGB(255, 232, 240, 224), // Light unselected tab item color
+    backgroundImage: 'assets/images/summer.jpg', // Same background image
+    textColor: const Color(
+        0xFF4D4D4D), // Darker text color for better contrast against light backgrounds
+  ),
+
   // ThemeModel(
-  //   name: 'SummerNight',
+  //   name: 'Summer',
+  //   themeMode: Mode.light,
   //   backgroundGradient: [
-  //     Color(0xFFE0E09E),
-  //     Color(0xFFF3B59F),
+  //     const Color(0xFFD1F5C0),
+  //     const Color(0xFF78E2EC),
   //   ],
-  //   borderColor: Color(0xFFE0646B),
-  //   backgroundColor: Color(0xFFE0E09E),
-  //   tabBarColor: Color(0xFFBF5A83),
-  //   backgroundImage: 'assets/images/summer2.png',
+  //   borderColor: const Color(0xFF98B27F),
+  //   backgroundColor: const Color(0xFF78E2EC),
+  //   tabBarColor: const Color(0xFF6FCCA9),
+  //   tabBarSelectedItemColor: Colors.white,
+  //   tabBarUnselectedItemColor: const Color(0xFFD8E4CC),
+  //   backgroundImage: 'assets/images/summer.jpg',
+  //   textColor: const Color(0xFFD8E4CC),
   // ),
+  ThemeModel(
+    name: 'Water',
+    themeMode: Mode.dark,
+    backgroundGradient: [
+      const Color(0xFF2BC0E4), // Deep aquatic blue for a richer water feel
+      const Color(0xFF2264A7), // Darker blue for depth
+    ],
+    borderColor: const Color(0xFF0A3D62), // Deep blue for contrast
+    backgroundColor: const Color(
+        0xFF2264A7), // Use the second gradient color for a consistent background
+    tabBarColor: const Color(
+        0xFF73D2F4), // Lighter blue for a fresh water-like appearance
+    tabBarSelectedItemColor:
+        Colors.white, // White for clear selection visibility
+    tabBarUnselectedItemColor:
+        const Color.fromARGB(255, 229, 246, 254), // Soft light blue for unselected tabs
+    backgroundImage:
+        'assets/images/water2.jpg', // Keep the water background image
+    textColor: const Color(
+        0xFFE0F7FA), // Very light aqua color to stand out against the darker blue background
+  ),
+
   // ThemeModel(
-  //   name: 'SummerDay',
+  //   name: 'Water',
+  //   themeMode: Mode.dark,
   //   backgroundGradient: [
-  //     Color(0xFFD1F5C0),
-  //     Color(0xFF78E2EC),
+  //     const Color(0xFF3FFFFF),
+  //     const Color(0xFF26A0FF),
   //   ],
-  //   borderColor: Color(0xFF98B27F),
-  //   backgroundColor: Color(0xFFD1F5C0),
-  //   tabBarColor: Color(0xFF99FFDB),
-  //   backgroundImage: 'assets/images/summer.png',
+  //   borderColor: const Color(0xFF0D3570),
+  //   backgroundColor: const Color(0xFF26A0FF),
+  //   tabBarColor: const Color(0xFFD6FFCF),
+  //   tabBarSelectedItemColor: const Color(0xFF0D3570),
+  //   tabBarUnselectedItemColor: const Color(0xFF26A0FF),
+  //   backgroundImage: 'assets/images/water2.jpg',
+  //   textColor: const Color(0xFFD6FFCF),
   // ),
-  // ThemeModel(
-  //   name: 'WaterNight',
-  //   backgroundGradient: [
-  //     Color(0xFF3FFFFF),
-  //     Color(0xFF26A0FF),
-  //   ],
-  //   borderColor: Color(0xFF0D3570),
-  //   backgroundColor: Color(0xFF3FFFFF),
-  //   tabBarColor: Color(0xFFD6FFCF),
-  //   backgroundImage: 'assets/images/water2.png',
-  // ),
-  // ThemeModel(
-  //   name: 'WaterDay',
-  //   backgroundGradient: [
-  //     Color(0xFFE19899),
-  //     Color(0xFFA36589),
-  //   ],
-  //   borderColor: Color(0xFF421C38),
-  //   backgroundColor: Color(0xFFE19899),
-  //   tabBarColor: Color(0xFF421C38),
-  //   backgroundImage: 'assets/images/water.png',
-  // ),
-  // ThemeModel(
-  //   name: 'FireNight',
-  //   backgroundGradient: [
-  //     Color(0xFF2B4F4F),
-  //     Color(0xFF3D5050),
-  //   ],
-  //   borderColor: Color(0xFFDBD6C9),
-  //   backgroundColor: Color(0xFF2B4F4F),
-  //   tabBarColor: Color(0xFFDBD6C9),
-  //   backgroundImage: 'assets/images/fire2.png',
-  // ),
-  // ThemeModel(
-  //   name: 'FireDay',
-  //   backgroundGradient: [
-  //     Color(0xFF506B50),
-  //     Color(0xFF385149),
-  //   ],
-  //   borderColor: Color(0xFFF0EC9D),
-  //   backgroundColor: Color(0xFF506B50),
-  //   tabBarColor: Color(0xFFAC8C56),
-  //   backgroundImage: 'assets/images/fire.png',
-  // ),
-  // ThemeModel(
-  //   name: 'AnimalNight',
-  //   backgroundGradient: [
-  //     Color(0xFF262929),
-  //     Color(0xFF61667A),
-  //   ],
-  //   borderColor: Color(0xFFD9D9D9),
-  //   backgroundColor: Color(0xFF61667A),
-  //   tabBarColor: Color(0xFFD9D9D9),
-  //   backgroundImage: 'assets/images/animal.png',
-  // ),
-  // ThemeModel(
-  //   name: 'AnimalDay',
-  //   backgroundGradient: [
-  //     Color(0xFFFBCFA4),
-  //     Color(0xFFFFC070),
-  //   ],
-  //   borderColor: Color(0xFF874A38),
-  //   backgroundColor: Color(0xFFFBCFA4),
-  //   tabBarColor: Color(0xFF874A38),
-  //   backgroundImage: 'assets/images/animal2.png',
-  // ),
+  ThemeModel(
+    name: 'Water',
+    themeMode: Mode.light,
+    backgroundGradient: [
+      const Color(0xFFE19899),
+      const Color(0xFFA36589),
+    ],
+    borderColor: const Color(0xFF421C38),
+    backgroundColor: const Color(0xFFA36589),
+    tabBarColor: const Color(0xFF421C38),
+    tabBarSelectedItemColor: const Color(0xFFE19899),
+    tabBarUnselectedItemColor: const Color(0xFFA36589),
+    backgroundImage: 'assets/images/water.jpg',
+    textColor: const Color(0xFF421C38),
+  ),
+  ThemeModel(
+    name: 'Fire',
+    themeMode: Mode.dark,
+    backgroundGradient: [
+      const Color(0xFF2B4F4F),
+      const Color(0xFF3D5050),
+    ],
+    borderColor: const Color(0xFFDBD6C9),
+    backgroundColor: const Color(0xFF3D5050),
+    tabBarColor: const Color(0xFFDBD6C9),
+    tabBarSelectedItemColor: const Color(0xFF3D5050),
+    tabBarUnselectedItemColor: const Color(0xFF6F5F46),
+    backgroundImage: 'assets/images/fire2.jpg',
+    textColor: const Color(0xFFDBD6C9),
+  ),
+  ThemeModel(
+    name: 'Fire',
+    themeMode: Mode.light,
+    backgroundGradient: [
+      const Color(0xFF506B50),
+      const Color(0xFF385149),
+    ],
+    borderColor: const Color(0xFFF0EC9D),
+    backgroundColor: const Color(0xFF385149),
+    tabBarColor: const Color(0xFFAC8C56),
+    tabBarSelectedItemColor: Colors.white,
+    tabBarUnselectedItemColor: const Color(0xFFF0EC9D),
+    backgroundImage: 'assets/images/fire.jpg',
+    textColor: const Color(0xFFF0EC9D),
+  ),
+  ThemeModel(
+    name: 'Animal',
+    themeMode: Mode.dark,
+    backgroundGradient: [
+      const Color(0xFF262929),
+      const Color(0xFF61667A),
+    ],
+    borderColor: const Color(0xFFD9D9D9),
+    backgroundColor: const Color(0xFF61667A),
+    tabBarColor: const Color(0xFFD9D9D9),
+    tabBarSelectedItemColor: const Color(0xFF262929),
+    tabBarUnselectedItemColor: const Color(0xFF61667A),
+    backgroundImage: 'assets/images/animal.jpg',
+    textColor: const Color(0xFFD9D9D9),
+  ),
+  ThemeModel(
+    name: 'Animal',
+    themeMode: Mode.light,
+    backgroundGradient: [
+      const Color(0xFFFBCFA4), // Lighter, warm yellow
+      const Color(0xFFFFC070), // Slightly deeper orange
+    ],
+    borderColor: const Color(0xFF874A38), // Warm brown
+    backgroundColor: const Color(0xFFFFC070), // Warm orange
+    tabBarColor:
+        const Color(0xFFD98E5B), // Rich caramel brown for better contrast
+    tabBarSelectedItemColor: const Color(
+        0xFFFFE3B3), // Light cream color to stand out against the tabBarColor
+    tabBarUnselectedItemColor: const Color(
+        0xFF874A38), // Darker brown for better contrast with tabBarColor
+    backgroundImage: 'assets/images/animal2.jpg', // Animal-themed image
+    textColor: const Color(
+        0xFF4A3621), // Rich dark brown for readability and contrast against the lighter background
+  ),
 ];

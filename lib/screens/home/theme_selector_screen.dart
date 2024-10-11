@@ -52,10 +52,16 @@ class _ThemeSelectorScreenState extends ConsumerState<ThemeSelectorScreen> {
               padding: const EdgeInsets.all(2.0),
               child: SegmentedButton<ThemeModeOption>(
                 style: SegmentedButton.styleFrom(
-                  backgroundColor: Colors.grey[200],
-                  foregroundColor: currentTheme.backgroundColor,
+                  // backgroundColor: Colors.grey[200],
+                  backgroundColor: currentTheme.backgroundColor,
+                  foregroundColor: currentTheme.textColor,
                   selectedForegroundColor: currentTheme.tabBarSelectedItemColor,
                   selectedBackgroundColor: currentTheme.tabBarColor,
+                  side: BorderSide(
+                    color: currentTheme
+                        .borderColor, // Set your desired border color
+                    width: 1, // You can adjust the width as needed
+                  ),
                 ),
                 segments: const <ButtonSegment<ThemeModeOption>>[
                   ButtonSegment<ThemeModeOption>(

@@ -65,21 +65,6 @@ class ActivityCard extends StatelessWidget {
                 ),
               ),
             ),
-            // Positioned(
-            //   top: 8,
-            //   right: 8,
-            //   child: activity.completed
-            //       ? const Icon(
-            //           Icons.check_circle,
-            //           color: Colors.white,
-            //           size: 35,
-            //         )
-            //       : const Icon(
-            //           Icons.circle_outlined,
-            //           color: Colors.white,
-            //           size: 35,
-            //         ),
-            // )
           ],
         ),
       ),

@@ -7,9 +7,9 @@ class Week1 extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        const SizedBox(
-          height: 30,
-        ),
+        // const SizedBox(
+        //   height: 30,
+        // ),
         Container(
           decoration: BoxDecoration(
             color: Colors.black.withOpacity(0.1),

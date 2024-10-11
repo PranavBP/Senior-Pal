@@ -2,7 +2,7 @@ import 'package:seniorpal/models/meditation_model.dart';
 
 final List<Meditation> mindfulnessItems = [
   Meditation(
-      title: "Loving and Kindness",
+      title: "Loving Kindness",
       description: "In a busy and uncertain world, simple acts of love and kindness shine brightly. A smile, kind word, or helping hand can transform someone's day and create ripples of positivity. Love brings people together, fostering belonging and mutual respect. By embracing love and kindness, we uplift others and enrich our own lives, making the world more compassionate and harmonious.",
       duration: 459,
       track: "LovingAndKindness",

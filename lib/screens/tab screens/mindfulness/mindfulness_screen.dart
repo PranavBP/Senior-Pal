@@ -22,7 +22,7 @@ class _MindfulnessScreenState extends ConsumerState<MindfulnessScreen> {
       backgroundColor: theme.backgroundColor,
       appBar: AppBar(
         title: Text(
-          "Activity",
+          "Mindfulness",
           style: TextStyle(
             color: theme.textColor,
             fontSize: 32,
