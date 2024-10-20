@@ -7,6 +7,7 @@ import 'package:hero_minds/provider/theme_provider.dart';
 import 'package:hero_minds/widgets/Common/custom_app_bar.dart';
 import 'package:hero_minds/widgets/Common/gradient_layer.dart';
 
+//This is Hari file
 class ProfilePage extends ConsumerStatefulWidget {
   const ProfilePage({super.key});
 
