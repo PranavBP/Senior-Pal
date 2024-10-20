@@ -1,4 +1,4 @@
-package edu.buffalo.seniorpal
+package edu.buffalo.HEROMinds
 
 import io.flutter.embedding.android.FlutterActivity
 

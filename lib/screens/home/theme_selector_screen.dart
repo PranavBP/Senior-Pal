@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:seniorpal/data/themes.dart';
-import 'package:seniorpal/models/theme.dart';
-import 'package:seniorpal/provider/theme_provider.dart';
-import 'package:seniorpal/widgets/Common/custom_app_bar.dart';
-import 'package:seniorpal/widgets/Theme/theme_card.dart';
+import 'package:hero_minds/data/themes.dart';
+import 'package:hero_minds/models/theme.dart';
+import 'package:hero_minds/provider/theme_provider.dart';
+import 'package:hero_minds/widgets/Common/custom_app_bar.dart';
+import 'package:hero_minds/widgets/Theme/theme_card.dart';
 
 enum ThemeModeOption { light, dark }
 

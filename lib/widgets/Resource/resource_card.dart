@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:seniorpal/models/resource.dart';
+import 'package:hero_minds/models/resource.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class ResourceCard extends StatelessWidget {

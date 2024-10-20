@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:seniorpal/screens/login-registration/login_screen.dart';
-import 'package:seniorpal/screens/login-registration/register_screen.dart';
+import 'package:hero_minds/screens/login-registration/login_screen.dart';
+import 'package:hero_minds/screens/login-registration/register_screen.dart';
 
 class AuthPage extends StatefulWidget {
   const AuthPage({super.key});

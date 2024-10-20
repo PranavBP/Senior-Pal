@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:seniorpal/models/activity.dart';
-import 'package:seniorpal/screens/modules_screen.dart';
+import 'package:hero_minds/models/activity.dart';
+import 'package:hero_minds/screens/modules_screen.dart';
 import 'package:transparent_image/transparent_image.dart';
 
 class ActivityCard extends StatelessWidget {

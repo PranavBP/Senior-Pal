@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import 'package:seniorpal/firebase_options.dart';
-import 'package:seniorpal/screens/main/main_screen.dart';
+import 'package:hero_minds/firebase_options.dart';
+import 'package:hero_minds/screens/main/main_screen.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();

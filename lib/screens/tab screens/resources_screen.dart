@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import 'package:seniorpal/data/resources.dart';
-import 'package:seniorpal/provider/theme_provider.dart';
-import 'package:seniorpal/widgets/Resource/resource_card.dart';
+import 'package:hero_minds/data/resources.dart';
+import 'package:hero_minds/provider/theme_provider.dart';
+import 'package:hero_minds/widgets/Resource/resource_card.dart';
 
 class ResourcesScreen extends ConsumerStatefulWidget {
   // final theme = ref.watch(themeNotifierProvider);

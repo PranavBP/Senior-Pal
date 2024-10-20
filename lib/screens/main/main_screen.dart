@@ -1,8 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:seniorpal/screens/login-registration/auth_screen.dart';
-// import 'package:seniorpal/screens/home_screen.dart';
-import 'package:seniorpal/screens/tab%20screens/tab_screen.dart';
+import 'package:hero_minds/screens/login-registration/auth_screen.dart';
+// import 'package:hero_minds/screens/home_screen.dart';
+import 'package:hero_minds/screens/tab%20screens/tab_screen.dart';
 
 class MainScreen extends StatelessWidget {
   const MainScreen({super.key});

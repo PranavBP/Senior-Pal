@@ -51,7 +51,7 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions android = FirebaseOptions(
     apiKey: 'AIzaSyCx6vyi4W50cE5L96H2RqES7GC8lTyKvmo',
-    appId: '1:26591708494:android:ddf0ddf231e2a270178a1f',
+    appId: '1:26591708494:android:d7c98fd903b300b7178a1f',
     messagingSenderId: '26591708494',
     projectId: 'senior-pal-620d4',
     databaseURL: 'https://senior-pal-620d4-default-rtdb.firebaseio.com',
@@ -60,11 +60,12 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions ios = FirebaseOptions(
     apiKey: 'AIzaSyD4ygG0kHemNH7N0kSY2GAQUpc_r2lyNHc',
-    appId: '1:26591708494:ios:e0dddaeea780375b178a1f',
+    appId: '1:26591708494:ios:f70b6528ac68d55c178a1f',
     messagingSenderId: '26591708494',
     projectId: 'senior-pal-620d4',
     databaseURL: 'https://senior-pal-620d4-default-rtdb.firebaseio.com',
     storageBucket: 'senior-pal-620d4.appspot.com',
-    iosBundleId: 'edu.buffalo.seniorpal',
+    iosBundleId: 'edu.buffalo.HEROMinds',
   );
+
 }

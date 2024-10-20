@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import 'package:seniorpal/controllers/home_controller.dart';
-import 'package:seniorpal/provider/theme_provider.dart';
-import 'package:seniorpal/screens/home/profile_screen.dart';
-import 'package:seniorpal/widgets/Common/custom_app_bar.dart';
-import 'package:seniorpal/widgets/Common/gradient_layer.dart';
-import 'package:seniorpal/widgets/Home/home_buttons.dart';
-import 'package:seniorpal/widgets/Home/home_greeting_text.dart';
-import 'package:seniorpal/widgets/Home/home_quote.dart';
+import 'package:hero_minds/controllers/home_controller.dart';
+import 'package:hero_minds/provider/theme_provider.dart';
+import 'package:hero_minds/screens/home/profile_screen.dart';
+import 'package:hero_minds/widgets/Common/custom_app_bar.dart';
+import 'package:hero_minds/widgets/Common/gradient_layer.dart';
+import 'package:hero_minds/widgets/Home/home_buttons.dart';
+import 'package:hero_minds/widgets/Home/home_greeting_text.dart';
+import 'package:hero_minds/widgets/Home/home_quote.dart';
 
 class HomePage extends ConsumerStatefulWidget {
   const HomePage({super.key});

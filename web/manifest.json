@@ -1,6 +1,6 @@
 {
-    "name": "seniorpal",
-    "short_name": "seniorpal",
+    "name": "hero_minds",
+    "short_name": "hero_minds",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

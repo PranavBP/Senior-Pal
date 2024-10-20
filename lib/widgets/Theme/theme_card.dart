@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:seniorpal/models/theme.dart';
+import 'package:hero_minds/models/theme.dart';
 import 'package:transparent_image/transparent_image.dart';
 
 class ThemeCard extends StatelessWidget {

@@ -90,12 +90,12 @@ BEGIN
         BLOCK "040904e4"
         BEGIN
             VALUE "CompanyName", "edu.buffalo" "\0"
-            VALUE "FileDescription", "seniorpal" "\0"
+            VALUE "FileDescription", "hero_minds" "\0"
             VALUE "FileVersion", VERSION_AS_STRING "\0"
-            VALUE "InternalName", "seniorpal" "\0"
+            VALUE "InternalName", "hero_minds" "\0"
             VALUE "LegalCopyright", "Copyright (C) 2024 edu.buffalo. All rights reserved." "\0"
-            VALUE "OriginalFilename", "seniorpal.exe" "\0"
-            VALUE "ProductName", "seniorpal" "\0"
+            VALUE "OriginalFilename", "hero_minds.exe" "\0"
+            VALUE "ProductName", "hero_minds" "\0"
             VALUE "ProductVersion", VERSION_AS_STRING "\0"
         END
     END

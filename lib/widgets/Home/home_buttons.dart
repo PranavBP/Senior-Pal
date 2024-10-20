@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:seniorpal/provider/theme_provider.dart';
+import 'package:hero_minds/provider/theme_provider.dart';
 
-import 'package:seniorpal/screens/daily-checkin/daily_checkin_screen.dart';
-import 'package:seniorpal/screens/home/theme_selector_screen.dart';
+import 'package:hero_minds/screens/daily-checkin/daily_checkin_screen.dart';
+import 'package:hero_minds/screens/home/theme_selector_screen.dart';
 
 class HomeButtons extends ConsumerWidget {
   const HomeButtons({super.key});

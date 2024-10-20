@@ -1,4 +1,4 @@
-import 'package:seniorpal/models/question.dart';
+import 'package:hero_minds/models/question.dart';
 
 const List<Question> questions = [
   Question(

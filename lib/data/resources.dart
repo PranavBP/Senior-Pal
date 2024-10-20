@@ -1,4 +1,4 @@
-import 'package:seniorpal/models/resource.dart';
+import 'package:hero_minds/models/resource.dart';
 
 List<Resource> resources = [
   Resource(

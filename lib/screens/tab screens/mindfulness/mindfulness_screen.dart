@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import 'package:seniorpal/data/mindfulness_assets.dart';
-import 'package:seniorpal/provider/theme_provider.dart';
-import 'package:seniorpal/screens/tab%20screens/mindfulness/mindfulness_item.dart';
+import 'package:hero_minds/data/mindfulness_assets.dart';
+import 'package:hero_minds/provider/theme_provider.dart';
+import 'package:hero_minds/screens/tab%20screens/mindfulness/mindfulness_item.dart';
 
 class MindfulnessScreen extends ConsumerStatefulWidget {
   const MindfulnessScreen({super.key});

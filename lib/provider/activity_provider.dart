@@ -1,9 +1,9 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:seniorpal/data/weekly_modules/week_1/week_1.dart';
-import 'package:seniorpal/data/weekly_modules/week_4/week_4.dart';
-import 'package:seniorpal/data/weekly_modules/week_5/week_5.dart';
-import 'package:seniorpal/models/activity.dart';
-import 'package:seniorpal/models/modules.dart';
+import 'package:hero_minds/data/weekly_modules/week_1/week_1.dart';
+import 'package:hero_minds/data/weekly_modules/week_4/week_4.dart';
+import 'package:hero_minds/data/weekly_modules/week_5/week_5.dart';
+import 'package:hero_minds/models/activity.dart';
+import 'package:hero_minds/models/modules.dart';
 
 // Sample list of activities
 final List<Activity> activities = [

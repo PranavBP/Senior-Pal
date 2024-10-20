@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import 'package:seniorpal/data/questions.dart';
-import 'package:seniorpal/provider/theme_provider.dart';
-import 'package:seniorpal/screens/daily-checkin/summary_screen.dart';
-import 'package:seniorpal/widgets/Common/custom_app_bar.dart';
-import 'package:seniorpal/widgets/Common/gradient_layer.dart';
+import 'package:hero_minds/data/questions.dart';
+import 'package:hero_minds/provider/theme_provider.dart';
+import 'package:hero_minds/screens/daily-checkin/summary_screen.dart';
+import 'package:hero_minds/widgets/Common/custom_app_bar.dart';
+import 'package:hero_minds/widgets/Common/gradient_layer.dart';
 
 class DailyCheckInScreen extends ConsumerStatefulWidget {
   const DailyCheckInScreen({super.key});

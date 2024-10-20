@@ -1,5 +1,5 @@
 import 'package:firebase_database/firebase_database.dart';
-import 'package:seniorpal/models/user.dart';
+import 'package:hero_minds/models/user.dart';
 
 class UserManager {
   final DatabaseReference _userRef =

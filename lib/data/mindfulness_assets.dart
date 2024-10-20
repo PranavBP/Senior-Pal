@@ -1,4 +1,4 @@
-import 'package:seniorpal/models/meditation_model.dart';
+import 'package:hero_minds/models/meditation_model.dart';
 
 final List<Meditation> mindfulnessItems = [
   Meditation(

@@ -1,4 +1,4 @@
-# seniorpal
+# hero_minds
 
 A new Flutter project.
 

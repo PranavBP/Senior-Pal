@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:seniorpal/managers/auth_manager.dart';
+import 'package:hero_minds/managers/auth_manager.dart';
 
 class ForgotPasswordPage extends StatefulWidget {
   const ForgotPasswordPage({super.key});

@@ -2,7 +2,7 @@ import 'dart:io';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
-import 'package:seniorpal/models/meditation_model.dart';
+import 'package:hero_minds/models/meditation_model.dart';
 import 'package:video_player/video_player.dart';
 import 'dart:async';
 import 'package:flutter_cache_manager/flutter_cache_manager.dart';

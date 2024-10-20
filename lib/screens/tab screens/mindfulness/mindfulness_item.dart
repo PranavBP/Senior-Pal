@@ -1,7 +1,6 @@
-
 import 'package:flutter/material.dart';
-import 'package:seniorpal/models/meditation_model.dart';
-import 'package:seniorpal/screens/tab%20screens/mindfulness/player_info_screen.dart';
+import 'package:hero_minds/models/meditation_model.dart';
+import 'package:hero_minds/screens/tab%20screens/mindfulness/player_info_screen.dart';
 
 class MindfulnessItem extends StatelessWidget {
   final Meditation meditation;

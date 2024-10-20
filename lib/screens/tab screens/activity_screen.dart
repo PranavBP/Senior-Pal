@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
-import 'package:seniorpal/provider/activity_provider.dart';
-import 'package:seniorpal/provider/theme_provider.dart';
-import 'package:seniorpal/widgets/Activity/activity_card.dart';
+import 'package:hero_minds/provider/activity_provider.dart';
+import 'package:hero_minds/provider/theme_provider.dart';
+import 'package:hero_minds/widgets/Activity/activity_card.dart';
 
 class ActivityScreen extends ConsumerStatefulWidget {
   const ActivityScreen({super.key});

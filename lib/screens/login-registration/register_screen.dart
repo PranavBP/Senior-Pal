@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-import 'package:seniorpal/managers/auth_manager.dart';
-import 'package:seniorpal/managers/user_manager.dart';
-import 'package:seniorpal/models/user.dart';
-import 'package:seniorpal/widgets/Auth/auth_text_field.dart';
+import 'package:hero_minds/managers/auth_manager.dart';
+import 'package:hero_minds/managers/user_manager.dart';
+import 'package:hero_minds/models/user.dart';
+import 'package:hero_minds/widgets/Auth/auth_text_field.dart';
 
 class RegisterPage extends StatefulWidget {
   const RegisterPage({super.key, required this.showLoginPage});

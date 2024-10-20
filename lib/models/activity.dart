@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:seniorpal/models/modules.dart';
+import 'package:hero_minds/models/modules.dart';
 
 class Activity {
   final String name;

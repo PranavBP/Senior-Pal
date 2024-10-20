@@ -2,10 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:seniorpal/managers/auth_manager.dart';
-import 'package:seniorpal/provider/theme_provider.dart';
-import 'package:seniorpal/widgets/Common/custom_app_bar.dart';
-import 'package:seniorpal/widgets/Common/gradient_layer.dart';
+import 'package:hero_minds/managers/auth_manager.dart';
+import 'package:hero_minds/provider/theme_provider.dart';
+import 'package:hero_minds/widgets/Common/custom_app_bar.dart';
+import 'package:hero_minds/widgets/Common/gradient_layer.dart';
 
 class ProfilePage extends ConsumerStatefulWidget {
   const ProfilePage({super.key});

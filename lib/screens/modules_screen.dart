@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:seniorpal/models/activity.dart';
+import 'package:hero_minds/models/activity.dart';
 
-import 'package:seniorpal/provider/theme_provider.dart';
-import 'package:seniorpal/screens/tab%20screens/mindfulness_screen.dart';
-import 'package:seniorpal/widgets/Common/youtube_player.dart';
+import 'package:hero_minds/provider/theme_provider.dart';
+import 'package:hero_minds/screens/tab%20screens/mindfulness_screen.dart';
+import 'package:hero_minds/widgets/Common/youtube_player.dart';
 
 class ModuleScreen extends ConsumerWidget {
   // final List<Module> modules;

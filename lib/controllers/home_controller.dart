@@ -1,8 +1,8 @@
 // controllers/user_controller.dart
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:seniorpal/managers/database_manager.dart';
-import 'package:seniorpal/managers/user_manager.dart';
-import 'package:seniorpal/models/user.dart' as app_user;
+import 'package:hero_minds/managers/database_manager.dart';
+import 'package:hero_minds/managers/user_manager.dart';
+import 'package:hero_minds/models/user.dart' as app_user;
 
 class UserController {
   final DatabaseManager _databaseManager = DatabaseManager();
