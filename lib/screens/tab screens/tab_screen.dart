@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hero_minds/provider/theme_provider.dart';
 
-import 'package:hero_minds/screens/tab%20screens/activity_screen.dart';
 import 'package:hero_minds/screens/home/home_screen.dart';
 import 'package:hero_minds/screens/tab%20screens/mindfulness/mindfulness_screen.dart';
 import 'package:hero_minds/screens/tab%20screens/reflections_screen.dart';

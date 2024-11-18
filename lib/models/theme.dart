@@ -32,4 +32,10 @@ class ThemeModel {
     // required this.textFont,
     // required this.captionFont,
   });
+
+  get iconColor => null;
+
+  get cardColor => null;
+
+  get appBarColor => null;
 }

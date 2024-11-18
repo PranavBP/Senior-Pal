@@ -18,7 +18,7 @@ class HomeQuote extends StatelessWidget {
         textAlign: TextAlign.justify,
         style: const TextStyle(
           color: Colors.white,
-          fontSize: 16,
+          fontSize: 17,
         ),
       ),
     );

@@ -19,7 +19,7 @@ class HomePage extends ConsumerStatefulWidget {
 
 class _HomePageState extends ConsumerState<HomePage> {
   String _userFullName = 'User';
-  String _dailyQuote = 'Quote';
+  String _dailyQuote = 'Quote of the day!';
   final UserController _userController = UserController();
 
   @override
@@ -39,7 +39,7 @@ class _HomePageState extends ConsumerState<HomePage> {
 
   void _openProfileOverlay() {
     showModalBottomSheet(
-        useSafeArea: true, // Important to ignore safe area space
+        useSafeArea: true,
         isScrollControlled: true,
         shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.vertical(
@@ -58,7 +58,6 @@ class _HomePageState extends ConsumerState<HomePage> {
     return Scaffold(
       body: Stack(
         children: [
-          // Background image with gradient overlay
           Positioned(
             top: -topPadding,
             left: 0,
@@ -73,7 +72,6 @@ class _HomePageState extends ConsumerState<HomePage> {
               ),
             ),
           ),
-          // Foreground content with AppBar
           Positioned.fill(
             child: Column(
               children: [
@@ -93,7 +91,6 @@ class _HomePageState extends ConsumerState<HomePage> {
               ],
             ),
           ),
-          // The View Content must come here
           Positioned.fill(
             child: Column(
               children: [
@@ -109,8 +106,23 @@ class _HomePageState extends ConsumerState<HomePage> {
                         children: [
                           GreetingText(userFullName: _userFullName),
                           const SizedBox(height: 8),
-                          HomeQuote(
-                            quote: _dailyQuote,
+                          AnimatedSwitcher(
+                            duration: const Duration(milliseconds: 500),
+                            transitionBuilder:
+                                (Widget child, Animation<double> animation) {
+                              return FadeTransition(
+                                opacity: animation,
+                                child: ScaleTransition(
+                                  scale: animation,
+                                  child: child,
+                                ),
+                              );
+                            },
+                            child: HomeQuote(
+                              key: ValueKey<String>(_dailyQuote),
+                              quote:
+                                  '💡$_dailyQuote', // Adding light bulb emoji
+                            ),
                           ),
                           const SizedBox(height: 16),
                           const HomeButtons()

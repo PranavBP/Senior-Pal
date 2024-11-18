@@ -8,7 +8,8 @@ class UserController {
   final DatabaseManager _databaseManager = DatabaseManager();
 
   Future<app_user.User?> fetchUserData() async {
-    User? firebaseUser = FirebaseAuth.instance.currentUser;
+    User? firebaseUser =
+        FirebaseAuth.instance.currentUser; //authorisation from FB
 
     if (firebaseUser != null) {
       String uid = firebaseUser.uid;
