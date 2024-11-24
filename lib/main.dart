@@ -4,7 +4,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 import 'package:hero_minds/firebase_options.dart';
 import 'package:hero_minds/screens/main/main_screen.dart';
-
+ 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
