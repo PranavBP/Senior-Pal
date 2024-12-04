@@ -1,18 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hero_minds/widgets/Reflections/reflection_details_screen.dart';
-import 'package:hero_minds/widgets/Reflections/reflection_list_view.dart';
 import 'package:intl/intl.dart';
 import 'package:lottie/lottie.dart';
 import '../../models/reflection.dart';
+import '../../provider/theme_provider.dart';
+import 'package:hero_minds/widgets/Reflections/reflection_list_view.dart';
 
 class PastReflectionsScreen extends ConsumerWidget {
   const PastReflectionsScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final reflections = ref.watch(reflectionListProvider);
+    final reflections = ref.watch(reflectionListProvider); // Reflection list
+    final theme = ref.watch(themeNotifierProvider); // Access the theme
 
+    // Group reflections by date
     final Map<String, List<Reflection>> groupedReflections = {};
     for (var reflection in reflections) {
       final formattedDate =
@@ -24,27 +27,29 @@ class PastReflectionsScreen extends ConsumerWidget {
       appBar: AppBar(
         title: const Text(
           "Past Reflections",
-          style: TextStyle(fontWeight: FontWeight.bold),
+          style: TextStyle(
+            fontWeight: FontWeight.bold,
+            color: Colors.black, // Static black text color
+          ),
         ),
         flexibleSpace: Container(
-          decoration: const BoxDecoration(
+          decoration: BoxDecoration(
             gradient: LinearGradient(
-              colors: [Colors.blueAccent, Colors.purpleAccent],
+              colors: theme.backgroundGradient, // Dynamic gradient
               begin: Alignment.topCenter,
               end: Alignment.bottomCenter,
             ),
           ),
         ),
+        backgroundColor: theme.backgroundColor, // Dynamic background color
       ),
       body: Container(
         decoration: BoxDecoration(
           gradient: LinearGradient(
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
-            colors: [
-              Colors.blue.shade50,
-              Colors.purple.shade50,
-            ],
+            colors:
+                theme.backgroundGradient, // Dynamic page background gradient
           ),
         ),
         child: reflections.isEmpty
@@ -62,7 +67,7 @@ class PastReflectionsScreen extends ConsumerWidget {
                       style: TextStyle(
                         fontSize: 18,
                         fontWeight: FontWeight.bold,
-                        color: Colors.black54,
+                        color: Colors.black, // Static black text color
                       ),
                     ),
                     const SizedBox(height: 8),
@@ -71,8 +76,9 @@ class PastReflectionsScreen extends ConsumerWidget {
                         // Navigate to add a new reflection screen
                       },
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.blueAccent,
-                        foregroundColor: Colors.white,
+                        backgroundColor: theme.backgroundColor,
+                        foregroundColor:
+                            Colors.black, // Black button text color
                       ),
                       child: const Text("Add Your First Reflection"),
                     ),
@@ -98,7 +104,7 @@ class PastReflectionsScreen extends ConsumerWidget {
                             style: const TextStyle(
                               fontSize: 18,
                               fontWeight: FontWeight.bold,
-                              color: Colors.black87,
+                              color: Colors.black, // Static black text color
                             ),
                           ),
                         ),
@@ -109,76 +115,68 @@ class PastReflectionsScreen extends ConsumerWidget {
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(12),
                             ),
-                            child: Container(
-                              decoration: BoxDecoration(
-                                gradient: LinearGradient(
-                                  colors: [
-                                    Colors.blue.shade100,
-                                    Colors.purple.shade100,
-                                  ],
-                                  begin: Alignment.topLeft,
-                                  end: Alignment.bottomRight,
+                            color: theme.cardColor, // Dynamic card background
+                            child: ListTile(
+                              title: Text(
+                                reflection.title,
+                                style: const TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 16,
+                                  color:
+                                      Colors.black, // Static black text color
                                 ),
-                                borderRadius: BorderRadius.circular(12),
                               ),
-                              child: ListTile(
-                                title: Text(
-                                  reflection.title,
-                                  style: const TextStyle(
-                                    fontWeight: FontWeight.bold,
-                                    fontSize: 16,
-                                    color: Colors.black87,
+                              subtitle: Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    reflection.content,
+                                    maxLines: 2,
+                                    overflow: TextOverflow.ellipsis,
+                                    style: const TextStyle(
+                                      fontStyle: FontStyle.italic,
+                                      color: Colors
+                                          .black, // Static black text color
+                                    ),
                                   ),
-                                ),
-                                subtitle: Column(
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    Text(
-                                      reflection.content,
-                                      maxLines: 2,
-                                      overflow: TextOverflow.ellipsis,
-                                      style: const TextStyle(
-                                        fontStyle: FontStyle.italic,
-                                        color: Colors.black54,
+                                  const SizedBox(height: 4),
+                                  Row(
+                                    children: [
+                                      Text(
+                                        "Mood: ${reflection.mood ?? 'N/A'}",
+                                        style: const TextStyle(
+                                          color: Colors
+                                              .black, // Static black text color
+                                          fontSize: 12,
+                                        ),
                                       ),
-                                    ),
-                                    const SizedBox(height: 4),
-                                    Row(
-                                      children: [
-                                        Text(
-                                          "Mood: ${reflection.mood ?? 'N/A'}",
-                                          style: TextStyle(
-                                            color: Colors.black54,
-                                            fontSize: 12,
-                                          ),
+                                      const Spacer(),
+                                      Text(
+                                        "Words: ${reflection.content.split(' ').length}",
+                                        style: const TextStyle(
+                                          color: Colors
+                                              .black, // Static black text color
+                                          fontSize: 12,
                                         ),
-                                        const Spacer(),
-                                        Text(
-                                          "Words: ${reflection.content.split(' ').length}",
-                                          style: TextStyle(
-                                            color: Colors.black54,
-                                            fontSize: 12,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ],
-                                ),
-                                trailing: Icon(
-                                  Icons.arrow_forward,
-                                  color: Colors.blueAccent,
-                                ),
-                                onTap: () {
-                                  Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) =>
-                                          ReflectionDetailsScreen(
-                                              reflection: reflection),
-                                    ),
-                                  );
-                                },
+                                      ),
+                                    ],
+                                  ),
+                                ],
                               ),
+                              trailing: const Icon(
+                                Icons.arrow_forward,
+                                color: Colors.black, // Static black icon color
+                              ),
+                              onTap: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) =>
+                                        ReflectionDetailsScreen(
+                                            reflection: reflection),
+                                  ),
+                                );
+                              },
                             ),
                           );
                         }).toList(),

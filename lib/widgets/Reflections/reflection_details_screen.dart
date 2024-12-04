@@ -1,13 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
 import '../../models/reflection.dart';
+import '../../provider/theme_provider.dart';
 
-class ReflectionDetailsScreen extends StatelessWidget {
+class ReflectionDetailsScreen extends ConsumerWidget {
   final Reflection reflection;
 
   const ReflectionDetailsScreen({super.key, required this.reflection});
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, WidgetRef ref) {
+    final theme = ref.watch(themeNotifierProvider); // Access the theme
+
     return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -15,26 +19,26 @@ class ReflectionDetailsScreen extends StatelessWidget {
           style: const TextStyle(
             fontWeight: FontWeight.bold,
             fontSize: 20,
+            color: Colors.black, // Static black text color
           ),
         ),
         flexibleSpace: Container(
-          decoration: const BoxDecoration(
+          decoration: BoxDecoration(
             gradient: LinearGradient(
-              colors: [Colors.blueAccent, Colors.purpleAccent],
+              colors: theme.backgroundGradient, // Dynamic gradient
               begin: Alignment.topLeft,
               end: Alignment.bottomRight,
             ),
           ),
         ),
         centerTitle: true,
+        backgroundColor: theme.backgroundColor, // Dynamic background color
       ),
       body: Container(
         decoration: BoxDecoration(
           gradient: LinearGradient(
-            colors: [
-              Colors.blue.shade50,
-              Colors.purple.shade50,
-            ],
+            colors:
+                theme.backgroundGradient, // Dynamic page background gradient
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
           ),
@@ -47,46 +51,36 @@ class ReflectionDetailsScreen extends StatelessWidget {
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(12),
               ),
+              color: theme.cardColor, // Dynamic card background color
               child: Container(
-                decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                    colors: [
-                      Colors.blue.shade100,
-                      Colors.purple.shade100,
-                    ],
-                    begin: Alignment.topLeft,
-                    end: Alignment.bottomRight,
-                  ),
-                  borderRadius: BorderRadius.circular(12),
-                ),
                 padding: const EdgeInsets.all(16),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    // Reflection Title
+                    // Title
                     Center(
                       child: Text(
                         reflection.title,
                         style: const TextStyle(
                           fontSize: 28,
                           fontWeight: FontWeight.bold,
-                          color: Colors.black87,
+                          color: Colors.black, // Black text for the title
                         ),
                         textAlign: TextAlign.center,
                       ),
                     ),
                     const SizedBox(height: 20),
-                    // Reflection Content
+                    // Content
                     Text(
                       reflection.content,
                       style: const TextStyle(
                         fontSize: 16,
-                        height: 1.5,
-                        color: Colors.black87,
+                        height: 1.6, // Improved line height for readability
+                        color: Colors.black, // Black text for the content
                       ),
                     ),
                     const SizedBox(height: 20),
-                    // Mood Section
+                    // Metadata: Mood
                     Row(
                       children: [
                         const Icon(
@@ -94,18 +88,18 @@ class ReflectionDetailsScreen extends StatelessWidget {
                           color: Colors.orangeAccent,
                         ),
                         const SizedBox(width: 8),
-                        Text(
-                          'Mood: ${reflection.mood ?? "N/A"}',
-                          style: const TextStyle(
+                        const Text(
+                          'Mood: N/A',
+                          style: TextStyle(
                             fontSize: 16,
                             fontWeight: FontWeight.bold,
-                            color: Colors.black54,
+                            color: Colors.black, // Black text for metadata
                           ),
                         ),
                       ],
                     ),
                     const SizedBox(height: 10),
-                    // Word Count Section
+                    // Metadata: Word Count
                     Row(
                       children: [
                         const Icon(
@@ -118,7 +112,7 @@ class ReflectionDetailsScreen extends StatelessWidget {
                           style: const TextStyle(
                             fontSize: 16,
                             fontWeight: FontWeight.bold,
-                            color: Colors.black54,
+                            color: Colors.black, // Black text for metadata
                           ),
                         ),
                       ],

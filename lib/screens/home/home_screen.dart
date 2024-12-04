@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:firebase_database/firebase_database.dart';
+import 'package:intl/intl.dart';
 import 'package:hero_minds/controllers/home_controller.dart';
 import 'package:hero_minds/provider/theme_provider.dart';
 import 'package:hero_minds/screens/home/profile_screen.dart';
@@ -29,8 +31,12 @@ class _HomePageState extends ConsumerState<HomePage> {
   }
 
   Future<void> _initializeData() async {
-    await _fetchData(); // Fetch data first
-    _showDailyQuotePopup(); // Show the popup only after data is fetched
+    await _fetchData(); // Fetch user and quote data
+    final showPopup =
+        await _shouldShowPopup(); // Check if popup should be shown
+    if (showPopup) {
+      _showDailyQuotePopup(); // Show popup if necessary
+    }
   }
 
   Future<void> _fetchData() async {
@@ -46,6 +52,45 @@ class _HomePageState extends ConsumerState<HomePage> {
     }
   }
 
+  Future<bool> _shouldShowPopup() async {
+    try {
+      final userId = "user_id"; // Replace with the user's actual ID
+      final databaseRef = FirebaseDatabase.instance.ref();
+      final snapshot =
+          await databaseRef.child('users/$userId/lastSeenDate').get();
+
+      if (snapshot.exists) {
+        final lastSeenDate =
+            snapshot.value as String; // Stored date in the database
+        final currentDate = DateFormat('MMMM d, yyyy').format(DateTime.now());
+
+        debugPrint("Last seen date: $lastSeenDate");
+        debugPrint("Current date: $currentDate");
+
+        if (lastSeenDate == currentDate) {
+          return false; // Popup already shown today
+        }
+      }
+    } catch (e) {
+      debugPrint("Error fetching last seen date: $e");
+    }
+    return true; // Show popup if no date is stored or it's a new day
+  }
+
+  Future<void> _updateLastSeenDate() async {
+    try {
+      final userId = "user_id"; // Replace with the user's actual ID
+      final currentDate = DateFormat('MMMM d, yyyy').format(DateTime.now());
+      final databaseRef = FirebaseDatabase.instance.ref();
+      await databaseRef
+          .child('users/$userId')
+          .update({'lastSeenDate': currentDate});
+      debugPrint("Last seen date updated to: $currentDate");
+    } catch (e) {
+      debugPrint("Error updating last seen date: $e");
+    }
+  }
+
   void _showDailyQuotePopup() {
     if (_dailyQuote.isNotEmpty) {
       showDialog(
@@ -54,7 +99,8 @@ class _HomePageState extends ConsumerState<HomePage> {
         builder: (BuildContext context) {
           return DailyQuotePopup(
             quote: _dailyQuote,
-            onClose: () {
+            onClose: () async {
+              await _updateLastSeenDate(); // Save the current date in the database
               Navigator.of(context).pop(); // Close the popup
             },
           );
