@@ -127,7 +127,7 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
                 // First Name, Last Name (displayName from Firebase- not working)
                 // Displaying the first name with a fallback
                 Text(
-                  "Hello, ${user?.uid ?? "User"}", // If firstName is null, "User" is shown
+                  "Hello, ${user?._userFullName ?? "User"}", // If firstName is null, "User" is shown
                   style: TextStyle(
                     color: currentTheme.textColor,
                     fontSize: 16.0,
@@ -236,4 +236,8 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
       ),
     );
   }
+}
+
+extension on User? {
+  get _userFullName => null;
 }

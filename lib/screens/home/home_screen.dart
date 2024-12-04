@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-
 import 'package:hero_minds/controllers/home_controller.dart';
 import 'package:hero_minds/provider/theme_provider.dart';
 import 'package:hero_minds/screens/home/profile_screen.dart';
@@ -9,6 +8,7 @@ import 'package:hero_minds/widgets/Common/gradient_layer.dart';
 import 'package:hero_minds/widgets/Home/home_buttons.dart';
 import 'package:hero_minds/widgets/Home/home_greeting_text.dart';
 import 'package:hero_minds/widgets/Home/home_quote.dart';
+import 'package:hero_minds/widgets/Popup/popup_screen.dart';
 
 class HomePage extends ConsumerStatefulWidget {
   const HomePage({super.key});
@@ -25,36 +25,64 @@ class _HomePageState extends ConsumerState<HomePage> {
   @override
   void initState() {
     super.initState();
-    _fetchData();
+    _initializeData();
+  }
+
+  Future<void> _initializeData() async {
+    await _fetchData(); // Fetch data first
+    _showDailyQuotePopup(); // Show the popup only after data is fetched
   }
 
   Future<void> _fetchData() async {
-    final user = await _userController.fetchUserData();
-    final quote = await _userController.fetchDailyQuote();
-    setState(() {
-      _userFullName = user != null ? user.firstName : 'User';
-      _dailyQuote = quote;
-    });
+    try {
+      final user = await _userController.fetchUserData();
+      final quote = await _userController.fetchDailyQuote();
+      setState(() {
+        _userFullName = user?.firstName ?? 'User';
+        _dailyQuote = quote ?? 'No quote available today!';
+      });
+    } catch (e) {
+      debugPrint("Error fetching data: $e");
+    }
+  }
+
+  void _showDailyQuotePopup() {
+    if (_dailyQuote.isNotEmpty) {
+      showDialog(
+        context: context,
+        barrierDismissible: false, // Prevent dismissal by tapping outside
+        builder: (BuildContext context) {
+          return DailyQuotePopup(
+            quote: _dailyQuote,
+            onClose: () {
+              Navigator.of(context).pop(); // Close the popup
+            },
+          );
+        },
+      );
+    }
   }
 
   void _openProfileOverlay() {
     showModalBottomSheet(
-        useSafeArea: true,
-        isScrollControlled: true,
-        shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.vertical(
-            top: Radius.circular(20.0),
-          ),
+      useSafeArea: true,
+      isScrollControlled: true,
+      shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(
+          top: Radius.circular(20.0),
         ),
-        clipBehavior: Clip.antiAliasWithSaveLayer,
-        context: context,
-        builder: (ctx) => const ProfilePage());
+      ),
+      clipBehavior: Clip.antiAliasWithSaveLayer,
+      context: context,
+      builder: (ctx) => const ProfilePage(),
+    );
   }
 
   @override
   Widget build(BuildContext context) {
     final theme = ref.watch(themeNotifierProvider);
     final topPadding = MediaQuery.of(context).padding.top;
+
     return Scaffold(
       body: Stack(
         children: [
@@ -76,18 +104,19 @@ class _HomePageState extends ConsumerState<HomePage> {
             child: Column(
               children: [
                 CustomAppBar(
-                    title: "Home",
-                    icon: const Icon(
-                      Icons.person,
-                      color: Colors.white,
-                    ),
-                    backgroundColor: Colors.black.withOpacity(0.2),
-                    titleColor: Colors.white,
-                    onPressed: _openProfileOverlay),
+                  title: "Home",
+                  icon: const Icon(
+                    Icons.person,
+                    color: Colors.white,
+                  ),
+                  backgroundColor: Colors.black.withOpacity(0.2),
+                  titleColor: Colors.white,
+                  onPressed: _openProfileOverlay,
+                ),
                 GradientLayer(colors: [
                   Colors.black.withOpacity(0.2),
-                  ...theme.backgroundGradient
-                ])
+                  ...theme.backgroundGradient,
+                ]),
               ],
             ),
           ),
@@ -120,12 +149,11 @@ class _HomePageState extends ConsumerState<HomePage> {
                             },
                             child: HomeQuote(
                               key: ValueKey<String>(_dailyQuote),
-                              quote:
-                                  '💡$_dailyQuote', // Adding light bulb emoji
+                              quote: '💡 $_dailyQuote',
                             ),
                           ),
                           const SizedBox(height: 16),
-                          const HomeButtons()
+                          const HomeButtons(),
                         ],
                       ),
                     ),
