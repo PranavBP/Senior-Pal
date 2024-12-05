@@ -50,6 +50,15 @@ class MindfulnessItem extends StatelessWidget {
                 fit: BoxFit.cover,
               ),
             ),
+            // Black opacity layer
+            ClipRRect(
+              borderRadius: BorderRadius.circular(16.0),
+              child: Container(
+                color:
+                    Colors.black.withOpacity(0.3), // Adjust opacity as needed
+              ),
+            ),
+            // Centered text
             Center(
               child: Text(
                 meditation.title,

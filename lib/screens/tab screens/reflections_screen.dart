@@ -19,7 +19,7 @@ final reflectionControllerProvider = Provider<ReflectionController>((ref) {
 class ReflectionsScreen extends ConsumerStatefulWidget {
   final Reflection? reflection;
 
-  const ReflectionsScreen({Key? key, this.reflection}) : super(key: key);
+  const ReflectionsScreen({super.key, this.reflection});
 
   @override
   ConsumerState<ReflectionsScreen> createState() => _ReflectionsScreenState();

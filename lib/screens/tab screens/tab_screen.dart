@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hero_minds/provider/theme_provider.dart';
 
 import 'package:hero_minds/screens/home/home_screen.dart';
+import 'package:hero_minds/screens/tab%20screens/activity_screen.dart';
 import 'package:hero_minds/screens/tab%20screens/mindfulness/mindfulness_screen.dart';
 import 'package:hero_minds/screens/tab%20screens/reflections_screen.dart';
 import 'package:hero_minds/screens/tab%20screens/resources_screen.dart';
@@ -29,22 +30,22 @@ class _TabScreenState extends ConsumerState<TabScreen> {
             _activePageTitle = 'Home';
           }
           break;
-        // case 1:
-        //   {
-        //     _activePageTitle = 'Activity';
-        //   }
-        //   break;
         case 1:
           {
-            _activePageTitle = 'Mindfulness';
+            _activePageTitle = 'Activity';
           }
           break;
         case 2:
           {
-            _activePageTitle = 'Resources';
+            _activePageTitle = 'Mindfulness';
           }
           break;
         case 3:
+          {
+            _activePageTitle = 'Resources';
+          }
+          break;
+        case 4:
           {
             _activePageTitle = 'Reflections';
           }
@@ -58,7 +59,7 @@ class _TabScreenState extends ConsumerState<TabScreen> {
 
     final List<Widget> pages = <Widget>[
       const HomePage(),
-      // const ActivityScreen(),
+      const ActivityScreen(),
       const MindfulnessScreen(),
       const ResourcesScreen(),
       const ReflectionsScreen()
@@ -92,10 +93,10 @@ class _TabScreenState extends ConsumerState<TabScreen> {
                 icon: Icon(Icons.home),
                 label: "Home",
               ),
-              // BottomNavigationBarItem(
-              //   icon: Icon(Icons.headset_rounded),
-              //   label: "Activity",
-              // ),
+              BottomNavigationBarItem(
+                icon: Icon(Icons.headset_rounded),
+                label: "Activity",
+              ),
               BottomNavigationBarItem(
                 icon: Icon(Icons.self_improvement),
                 label: 'Mindfulness',
