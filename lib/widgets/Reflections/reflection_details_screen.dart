@@ -13,122 +13,141 @@ class ReflectionDetailsScreen extends ConsumerWidget {
     final theme = ref.watch(themeNotifierProvider); // Access the theme
 
     return Scaffold(
-      appBar: AppBar(
-        title: Text(
-          reflection.title,
-          style: const TextStyle(
-            fontWeight: FontWeight.bold,
-            fontSize: 20,
-            color: Colors.black, // Static black text color
-          ),
-        ),
-        flexibleSpace: Container(
-          decoration: BoxDecoration(
-            gradient: LinearGradient(
-              colors: theme.backgroundGradient, // Dynamic gradient
-              begin: Alignment.topLeft,
-              end: Alignment.bottomRight,
-            ),
-          ),
-        ),
-        centerTitle: true,
-        backgroundColor: theme.backgroundColor, // Dynamic background color
-      ),
       body: Container(
-        width: double.infinity, // Ensures full width
-        height: double.infinity, // Ensures full height
+        width: double.infinity,
+        height: double.infinity,
         decoration: BoxDecoration(
           gradient: LinearGradient(
-            colors:
-                theme.backgroundGradient, // Dynamic page background gradient
+            colors: theme.backgroundGradient, // Unified page gradient
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
           ),
         ),
-        child: Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: SingleChildScrollView(
-            child: Card(
-              elevation: 6,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(16), // Softer corners
-              ),
-              color: theme.cardColor, // Dynamic card background color
-              child: Container(
-                padding: const EdgeInsets.all(20),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
+        child: SafeArea(
+          // Ensures content is positioned below the notch
+          child: Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                // Back Button and Header Title
+                Row(
                   children: [
-                    // Title
-                    Center(
-                      child: Text(
-                        reflection.title,
-                        style: const TextStyle(
-                          fontSize: 28,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.black, // Black text for the title
-                        ),
-                        textAlign: TextAlign.center,
-                      ),
+                    IconButton(
+                      icon: Icon(Icons.arrow_back, color: theme.textColor),
+                      onPressed: () =>
+                          Navigator.of(context).pop(), // Fixes back button
                     ),
-                    const SizedBox(height: 20),
-                    // Content
+                    const SizedBox(width: 16),
                     Text(
-                      reflection.content,
-                      style: const TextStyle(
-                        fontSize: 16,
-                        height: 1.6, // Improved line height for readability
-                        color: Colors.black, // Black text for the content
+                      "Reflection Details",
+                      style: TextStyle(
+                        fontSize: 24,
+                        fontWeight: FontWeight.bold,
+                        color: theme.textColor, // Dynamic text color
                       ),
-                    ),
-                    const SizedBox(height: 20),
-                    const Divider(
-                      thickness: 1,
-                      color: Colors.black12,
-                    ),
-                    const SizedBox(height: 20),
-                    // Metadata: Mood
-                    Row(
-                      children: [
-                        const Icon(
-                          Icons.sentiment_satisfied_alt,
-                          color: Colors.orangeAccent,
-                          size: 24,
-                        ),
-                        const SizedBox(width: 10),
-                        Text(
-                          'Mood: ${reflection.mood ?? 'N/A'}',
-                          style: const TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.black, // Black text for metadata
-                          ),
-                        ),
-                      ],
-                    ),
-                    const SizedBox(height: 15),
-                    // Metadata: Word Count
-                    Row(
-                      children: [
-                        const Icon(
-                          Icons.text_snippet,
-                          color: Colors.greenAccent,
-                          size: 24,
-                        ),
-                        const SizedBox(width: 10),
-                        Text(
-                          'Word Count: ${reflection.content.split(' ').length}',
-                          style: const TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.black, // Black text for metadata
-                          ),
-                        ),
-                      ],
                     ),
                   ],
                 ),
-              ),
+                const SizedBox(height: 16), // Space below header
+                // Reflection Details Content
+                Expanded(
+                  child: SingleChildScrollView(
+                    child: Card(
+                      elevation: 6,
+                      shape: RoundedRectangleBorder(
+                        borderRadius:
+                            BorderRadius.circular(16), // Softer corners
+                      ),
+                      color: theme.cardColor
+                          .withOpacity(0.9), // Semi-transparent card
+                      child: Container(
+                        padding: const EdgeInsets.all(20),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(16),
+                          color: theme.cardColor
+                              .withOpacity(0.9), // Opaque layer effect
+                        ),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            // Title
+                            Center(
+                              child: Text(
+                                reflection.title,
+                                style: TextStyle(
+                                  fontSize: 28,
+                                  fontWeight: FontWeight.bold,
+                                  color: theme.textColor, // Dynamic text color
+                                ),
+                                textAlign: TextAlign.center,
+                              ),
+                            ),
+                            const SizedBox(height: 20),
+                            // Content
+                            Text(
+                              reflection.content,
+                              style: TextStyle(
+                                fontSize: 16,
+                                height: 1.6,
+                                color: theme.textColor.withOpacity(
+                                    0.8), // Dynamic text color with opacity
+                              ),
+                            ),
+                            const SizedBox(height: 20),
+                            const Divider(
+                              thickness: 1,
+                              color: Colors.black12,
+                            ),
+                            const SizedBox(height: 20),
+                            // Metadata: Mood
+                            Row(
+                              children: [
+                                const Icon(
+                                  Icons.sentiment_satisfied_alt,
+                                  color: Colors.orangeAccent,
+                                  size: 24,
+                                ),
+                                const SizedBox(width: 10),
+                                Text(
+                                  'Mood: ${reflection.mood ?? 'N/A'}',
+                                  style: TextStyle(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.bold,
+                                    color:
+                                        theme.textColor, // Dynamic text color
+                                  ),
+                                ),
+                              ],
+                            ),
+                            const SizedBox(height: 15),
+                            // Metadata: Word Count
+                            Row(
+                              children: [
+                                const Icon(
+                                  Icons.text_snippet,
+                                  color: Colors.greenAccent,
+                                  size: 24,
+                                ),
+                                const SizedBox(width: 10),
+                                Text(
+                                  'Word Count: ${reflection.content.split(' ').length}',
+                                  style: TextStyle(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.bold,
+                                    color:
+                                        theme.textColor, // Dynamic text color
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ],
             ),
           ),
         ),

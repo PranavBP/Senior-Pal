@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
-import 'package:hero_minds/widgets/Reflections/reflection_list_view.dart';
 import 'package:intl/intl.dart';
 import '../../provider/theme_provider.dart';
 import '../../controllers/reflection_controller.dart';
 import '../../models/reflection.dart';
 import '../../models/theme.dart';
 import '../../widgets/Reflections/past_reflections_screen.dart';
+import 'package:hero_minds/widgets/Reflections/reflection_list_view.dart';
 
 // Simulate a streak count for demonstration purposes
 final streakCountProvider = Provider<int>((ref) => 5);
@@ -44,6 +44,17 @@ class _ReflectionsScreenState extends ConsumerState<ReflectionsScreen> {
   }
 
   void saveReflection() {
+    if (titleController.text.isEmpty || contentController.text.isEmpty) {
+      // Show an error if fields are empty
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('Please fill in all fields before saving.'),
+          duration: Duration(seconds: 2),
+        ),
+      );
+      return; // Exit the function if validation fails
+    }
+
     try {
       final reflectionListNotifier = ref.read(reflectionListProvider.notifier);
 
@@ -120,26 +131,23 @@ class _ReflectionsScreenState extends ConsumerState<ReflectionsScreen> {
     final theme = ref.watch(themeNotifierProvider);
     final streakCount = ref.watch(streakCountProvider);
 
-    final isSaveEnabled = titleController.text.isNotEmpty &&
-        contentController.text.isNotEmpty &&
-        contentController.text.length <= 500;
-
     return Scaffold(
       appBar: AppBar(
         title: Text(
           "Reflections",
           style: TextStyle(
             color: theme.textColor,
-            fontSize: 28,
-            fontWeight: FontWeight.w800,
+            fontSize: 32,
+            fontWeight: FontWeight.bold,
           ),
         ),
         backgroundColor: theme.backgroundGradient[0],
-        centerTitle: false,
         elevation: 4,
+        centerTitle: false,
       ),
       body: Stack(
         children: [
+          // Gradient Background
           Container(
             decoration: BoxDecoration(
               gradient: LinearGradient(
@@ -161,7 +169,7 @@ class _ReflectionsScreenState extends ConsumerState<ReflectionsScreen> {
                       Center(
                         child: Text(
                           selectedMood!,
-                          style: TextStyle(
+                          style: const TextStyle(
                               fontSize: 48, fontWeight: FontWeight.bold),
                         ),
                       ),
@@ -213,7 +221,7 @@ class _ReflectionsScreenState extends ConsumerState<ReflectionsScreen> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         ElevatedButton(
-                          onPressed: isSaveEnabled ? saveReflection : null,
+                          onPressed: saveReflection,
                           style: ElevatedButton.styleFrom(
                             backgroundColor: theme.backgroundColor,
                             foregroundColor: theme.textColor,
@@ -247,9 +255,8 @@ class _ReflectionsScreenState extends ConsumerState<ReflectionsScreen> {
                           );
                         },
                         style: ElevatedButton.styleFrom(
-                          backgroundColor:
-                              Theme.of(context).colorScheme.primary,
-                          foregroundColor: Colors.white,
+                          backgroundColor: theme.backgroundColor, // Theme-based
+                          foregroundColor: theme.textColor, // Theme-based
                           padding: const EdgeInsets.symmetric(
                               vertical: 14, horizontal: 24),
                           shape: RoundedRectangleBorder(
