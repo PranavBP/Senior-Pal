@@ -9,8 +9,7 @@ import '../../models/theme.dart';
 import '../../widgets/Reflections/past_reflections_screen.dart';
 
 // Simulate a streak count for demonstration purposes
-final streakCountProvider =
-    Provider<int>((ref) => 5); // Replace with real logic if needed
+final streakCountProvider = Provider<int>((ref) => 5);
 
 final reflectionControllerProvider = Provider<ReflectionController>((ref) {
   return ReflectionController();
@@ -71,11 +70,8 @@ class _ReflectionsScreenState extends ConsumerState<ReflectionsScreen> {
         const SnackBar(content: Text('Reflection saved successfully!')),
       );
 
-      // Clear fields and reset states
       clearFields();
-    } catch (e, stackTrace) {
-      print('Error saving reflection: $e');
-      print('Stack trace: $stackTrace');
+    } catch (e) {
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(content: Text('Failed to save reflection.')),
       );
@@ -83,7 +79,6 @@ class _ReflectionsScreenState extends ConsumerState<ReflectionsScreen> {
   }
 
   void clearFields() {
-    print("Clearing fields..."); // Debugging print statement
     titleController.clear();
     contentController.clear();
     setState(() {
@@ -135,12 +130,13 @@ class _ReflectionsScreenState extends ConsumerState<ReflectionsScreen> {
           "Reflections",
           style: TextStyle(
             color: theme.textColor,
-            fontSize: 32,
-            fontWeight: FontWeight.bold,
+            fontSize: 28,
+            fontWeight: FontWeight.w800,
           ),
         ),
         backgroundColor: theme.backgroundGradient[0],
         centerTitle: false,
+        elevation: 4,
       ),
       body: Stack(
         children: [
@@ -154,18 +150,19 @@ class _ReflectionsScreenState extends ConsumerState<ReflectionsScreen> {
             ),
           ),
           Positioned.fill(
-            top: 16,
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16.0),
               child: SingleChildScrollView(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
+                    const SizedBox(height: 20),
                     if (selectedMood != null)
                       Center(
                         child: Text(
                           selectedMood!,
-                          style: TextStyle(fontSize: 48),
+                          style: TextStyle(
+                              fontSize: 48, fontWeight: FontWeight.bold),
                         ),
                       ),
                     Padding(
@@ -174,7 +171,7 @@ class _ReflectionsScreenState extends ConsumerState<ReflectionsScreen> {
                         "Current Streak: $streakCount days",
                         style: TextStyle(
                           color: theme.textColor,
-                          fontSize: 16,
+                          fontSize: 18,
                           fontWeight: FontWeight.bold,
                         ),
                       ),
@@ -183,32 +180,13 @@ class _ReflectionsScreenState extends ConsumerState<ReflectionsScreen> {
                       padding: const EdgeInsets.only(bottom: 16.0),
                       child: Text(
                         isEditing
-                            ? "Editing your reflection. Feel free to update your thoughts or feelings."
-                            : "Start a new reflection and capture your thoughts for today.",
+                            ? "Editing your reflection. Update your thoughts."
+                            : "Start a new reflection and capture your thoughts.",
                         style: TextStyle(
-                          color: theme.textColor.withOpacity(0.8),
+                          color: theme.textColor.withOpacity(0.9),
                           fontSize: 18,
-                          fontWeight: FontWeight.w600,
+                          fontWeight: FontWeight.w500,
                         ),
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.only(bottom: 10.0),
-                      child: Text(
-                        "What was the highlight of your day?",
-                        style: TextStyle(
-                          color: theme.textColor.withOpacity(0.8),
-                          fontSize: 16,
-                          fontStyle: FontStyle.italic,
-                        ),
-                      ),
-                    ),
-                    Text(
-                      formattedDate,
-                      style: TextStyle(
-                        color: theme.textColor.withOpacity(0.7),
-                        fontSize: 16,
-                        fontStyle: FontStyle.italic,
                       ),
                     ),
                     const SizedBox(height: 10),
@@ -219,18 +197,18 @@ class _ReflectionsScreenState extends ConsumerState<ReflectionsScreen> {
                     const SizedBox(height: 16),
                     _buildTextField(
                         "Reflection Content", contentController, theme,
-                        maxLines: null),
+                        maxLines: 5),
                     Align(
                       alignment: Alignment.centerRight,
                       child: Text(
                         "${contentController.text.length} / 500 characters",
                         style: TextStyle(
-                          color: theme.textColor.withOpacity(0.5),
+                          color: theme.textColor.withOpacity(0.6),
                           fontSize: 12,
                         ),
                       ),
                     ),
-                    const SizedBox(height: 16),
+                    const SizedBox(height: 20),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -239,6 +217,11 @@ class _ReflectionsScreenState extends ConsumerState<ReflectionsScreen> {
                           style: ElevatedButton.styleFrom(
                             backgroundColor: theme.backgroundColor,
                             foregroundColor: theme.textColor,
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 16, vertical: 10),
+                            shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(8),
+                            ),
                           ),
                           child: const Text('Save'),
                         ),
@@ -251,9 +234,9 @@ class _ReflectionsScreenState extends ConsumerState<ReflectionsScreen> {
                         ),
                       ],
                     ),
-                    const SizedBox(height: 20),
+                    const SizedBox(height: 30),
                     Center(
-                      child: TextButton(
+                      child: ElevatedButton(
                         onPressed: () {
                           Navigator.push(
                             context,
@@ -263,10 +246,20 @@ class _ReflectionsScreenState extends ConsumerState<ReflectionsScreen> {
                             ),
                           );
                         },
-                        child: Text(
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor:
+                              Theme.of(context).colorScheme.primary,
+                          foregroundColor: Colors.white,
+                          padding: const EdgeInsets.symmetric(
+                              vertical: 14, horizontal: 24),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(12),
+                          ),
+                          elevation: 4,
+                        ),
+                        child: const Text(
                           "View Past Notes",
                           style: TextStyle(
-                            color: theme.textColor,
                             fontSize: 16,
                             fontWeight: FontWeight.bold,
                           ),
@@ -286,10 +279,13 @@ class _ReflectionsScreenState extends ConsumerState<ReflectionsScreen> {
   Widget buildMoodSelector(ThemeModel theme) {
     final moods = ["😀", "😐", "😢", "😡"];
     return Wrap(
-      spacing: 10,
+      spacing: 12,
       children: moods.map((mood) {
         return ChoiceChip(
-          label: Text(mood, style: const TextStyle(fontSize: 24)),
+          label: Text(
+            mood,
+            style: const TextStyle(fontSize: 24),
+          ),
           selected: selectedMood == mood,
           onSelected: (bool selected) {
             setState(() {
@@ -297,7 +293,7 @@ class _ReflectionsScreenState extends ConsumerState<ReflectionsScreen> {
             });
           },
           backgroundColor: theme.textColor.withOpacity(0.1),
-          selectedColor: theme.backgroundColor.withOpacity(0.7),
+          selectedColor: theme.backgroundColor.withOpacity(0.8),
           labelStyle: TextStyle(
             color: selectedMood == mood
                 ? theme.textColor
@@ -317,24 +313,24 @@ class _ReflectionsScreenState extends ConsumerState<ReflectionsScreen> {
       style: TextStyle(color: theme.textColor),
       decoration: InputDecoration(
         labelText: label,
-        labelStyle: TextStyle(color: theme.textColor.withOpacity(0.7)),
+        labelStyle: TextStyle(color: theme.textColor.withOpacity(0.8)),
         hintText: 'Enter $label',
         hintStyle: TextStyle(color: theme.textColor.withOpacity(0.5)),
         border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(8.0),
+          borderRadius: BorderRadius.circular(10.0),
           borderSide: BorderSide(color: theme.borderColor),
         ),
         enabledBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(8.0),
+          borderRadius: BorderRadius.circular(10.0),
           borderSide: BorderSide(color: theme.borderColor),
         ),
         focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(8.0),
+          borderRadius: BorderRadius.circular(10.0),
           borderSide: BorderSide(color: theme.textColor),
         ),
       ),
       onChanged: (text) {
-        setState(() {}); // Trigger rebuild for character count update
+        setState(() {});
       },
     );
   }

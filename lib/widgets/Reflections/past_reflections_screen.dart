@@ -54,35 +54,64 @@ class PastReflectionsScreen extends ConsumerWidget {
         ),
         child: reflections.isEmpty
             ? Center(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Lottie.asset(
-                      'assets/animations/empty_state.json',
-                      width: 200,
-                    ),
-                    const SizedBox(height: 16),
-                    const Text(
-                      "No reflections available.",
-                      style: TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.black, // Static black text color
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      Icon(
+                        Icons.book_outlined,
+                        size: 120,
+                        color: theme.textColor
+                            .withOpacity(0.8), // Updated icon color
                       ),
-                    ),
-                    const SizedBox(height: 8),
-                    ElevatedButton(
-                      onPressed: () {
-                        // Navigate to add a new reflection screen
-                      },
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: theme.backgroundColor,
-                        foregroundColor:
-                            Colors.black, // Black button text color
+                      const SizedBox(height: 24),
+                      Text(
+                        "Your journey starts here!",
+                        style: TextStyle(
+                          fontSize: 22,
+                          fontWeight: FontWeight.bold,
+                          color: theme.textColor, // Dynamic text color
+                        ),
+                        textAlign: TextAlign.center,
                       ),
-                      child: const Text("Add Your First Reflection"),
-                    ),
-                  ],
+                      const SizedBox(height: 8),
+                      Text(
+                        "It looks like you don’t have any reflections yet. Start documenting your thoughts and track your progress over time.",
+                        style: TextStyle(
+                          fontSize: 16,
+                          color: theme.textColor.withOpacity(
+                              0.7), // Dynamic text color with opacity
+                        ),
+                        textAlign: TextAlign.center,
+                      ),
+                      const SizedBox(height: 24),
+                      ElevatedButton(
+                        onPressed: () {
+                          Navigator.pop(
+                              context); // Go back to the previous page
+                        },
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor:
+                              theme.textColor, // Updated button background
+                          foregroundColor:
+                              theme.backgroundColor, // Button text color
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 32, vertical: 12),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(20),
+                          ),
+                        ),
+                        child: const Text(
+                          "Add Your First Reflection",
+                          style: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               )
             : ListView.builder(
@@ -101,10 +130,10 @@ class PastReflectionsScreen extends ConsumerWidget {
                           padding: const EdgeInsets.symmetric(vertical: 8.0),
                           child: Text(
                             date,
-                            style: const TextStyle(
+                            style: TextStyle(
                               fontSize: 18,
                               fontWeight: FontWeight.bold,
-                              color: Colors.black, // Static black text color
+                              color: theme.textColor, // Dynamic text color
                             ),
                           ),
                         ),
@@ -115,15 +144,15 @@ class PastReflectionsScreen extends ConsumerWidget {
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(12),
                             ),
-                            color: theme.cardColor, // Dynamic card background
+                            color: theme.cardColor.withOpacity(
+                                0.9), // Adjust card background for contrast
                             child: ListTile(
                               title: Text(
                                 reflection.title,
-                                style: const TextStyle(
+                                style: TextStyle(
                                   fontWeight: FontWeight.bold,
                                   fontSize: 16,
-                                  color:
-                                      Colors.black, // Static black text color
+                                  color: theme.textColor, // Dynamic text color
                                 ),
                               ),
                               subtitle: Column(
@@ -133,10 +162,10 @@ class PastReflectionsScreen extends ConsumerWidget {
                                     reflection.content,
                                     maxLines: 2,
                                     overflow: TextOverflow.ellipsis,
-                                    style: const TextStyle(
+                                    style: TextStyle(
                                       fontStyle: FontStyle.italic,
-                                      color: Colors
-                                          .black, // Static black text color
+                                      color: theme.textColor.withOpacity(
+                                          0.8), // Dynamic text color with opacity
                                     ),
                                   ),
                                   const SizedBox(height: 4),
@@ -144,18 +173,18 @@ class PastReflectionsScreen extends ConsumerWidget {
                                     children: [
                                       Text(
                                         "Mood: ${reflection.mood ?? 'N/A'}",
-                                        style: const TextStyle(
-                                          color: Colors
-                                              .black, // Static black text color
+                                        style: TextStyle(
+                                          color: theme.textColor.withOpacity(
+                                              0.7), // Dynamic text color with opacity
                                           fontSize: 12,
                                         ),
                                       ),
                                       const Spacer(),
                                       Text(
                                         "Words: ${reflection.content.split(' ').length}",
-                                        style: const TextStyle(
-                                          color: Colors
-                                              .black, // Static black text color
+                                        style: TextStyle(
+                                          color: theme.textColor.withOpacity(
+                                              0.7), // Dynamic text color with opacity
                                           fontSize: 12,
                                         ),
                                       ),
@@ -163,9 +192,9 @@ class PastReflectionsScreen extends ConsumerWidget {
                                   ),
                                 ],
                               ),
-                              trailing: const Icon(
+                              trailing: Icon(
                                 Icons.arrow_forward,
-                                color: Colors.black, // Static black icon color
+                                color: theme.textColor, // Dynamic icon color
                               ),
                               onTap: () {
                                 Navigator.push(

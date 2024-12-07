@@ -16,6 +16,9 @@ final List<ThemeModel> themes = [
     tabBarUnselectedItemColor: const Color(0xFF1A110A),
     backgroundImage: 'assets/images/eagle.jpg',
     textColor: const Color(0xFFE6E6CC),
+    iconColor: Colors.white,
+    cardColor: Colors.black.withOpacity(0.5),
+    appBarColor: Colors.grey,
   ),
   ThemeModel(
     name: 'Patriot',
@@ -31,6 +34,9 @@ final List<ThemeModel> themes = [
     tabBarUnselectedItemColor: Colors.grey,
     textColor: Colors.white,
     backgroundImage: 'assets/images/flag.jpg',
+    iconColor: Colors.white,
+    cardColor: Colors.black.withOpacity(0.5),
+    appBarColor: Colors.grey,
   ),
   ThemeModel(
     name: 'Fall',
@@ -46,6 +52,9 @@ final List<ThemeModel> themes = [
     tabBarUnselectedItemColor: const Color.fromARGB(255, 184, 173, 22),
     textColor: const Color(0xFF4D4A17),
     backgroundImage: 'assets/images/fall2.jpg',
+    iconColor: Colors.white,
+    cardColor: Colors.black.withOpacity(0.5),
+    appBarColor: Colors.grey,
   ),
   ThemeModel(
     name: 'Fall',
@@ -61,6 +70,9 @@ final List<ThemeModel> themes = [
     tabBarUnselectedItemColor: const Color(0xFFF7F7F7),
     backgroundImage: 'assets/images/fall.jpg',
     textColor: const Color(0xFFF7F7F7),
+    iconColor: Colors.white,
+    cardColor: Colors.black.withOpacity(0.5),
+    appBarColor: Colors.grey,
   ),
   ThemeModel(
     name: 'Winter',
@@ -76,6 +88,9 @@ final List<ThemeModel> themes = [
     tabBarUnselectedItemColor: const Color(0xFF9EB2BF),
     backgroundImage: 'assets/images/winter2.jpg',
     textColor: const Color(0xFFDEE6EE),
+    iconColor: Colors.white,
+    cardColor: Colors.black.withOpacity(0.5),
+    appBarColor: Colors.grey,
   ),
   ThemeModel(
     name: 'Winter',
@@ -91,6 +106,9 @@ final List<ThemeModel> themes = [
     tabBarUnselectedItemColor: Colors.grey,
     backgroundImage: 'assets/images/winter.jpg',
     textColor: const Color(0xFF0A2447),
+    iconColor: Colors.white,
+    cardColor: Colors.black.withOpacity(0.5),
+    appBarColor: Colors.grey,
   ),
   ThemeModel(
     name: 'Spring',
@@ -109,6 +127,9 @@ final List<ThemeModel> themes = [
     tabBarUnselectedItemColor: const Color(0xFFFFDFCC),
     backgroundImage: 'assets/images/spring2.jpg',
     textColor: const Color.fromARGB(255, 251, 126, 159),
+    iconColor: Colors.white,
+    cardColor: Colors.black.withOpacity(0.5),
+    appBarColor: Colors.grey,
   ),
   ThemeModel(
     name: 'Spring',
@@ -124,6 +145,9 @@ final List<ThemeModel> themes = [
     tabBarUnselectedItemColor: const Color(0xFFF2FDF1),
     backgroundImage: 'assets/images/spring.jpg',
     textColor: const Color(0xFFFF99CC),
+    iconColor: Colors.white,
+    cardColor: Colors.black.withOpacity(0.5),
+    appBarColor: Colors.grey,
   ),
   ThemeModel(
     name: 'Summer',
@@ -139,6 +163,9 @@ final List<ThemeModel> themes = [
     tabBarUnselectedItemColor: const Color(0xFFF3B59F),
     backgroundImage: 'assets/images/summer2.jpg',
     textColor: const Color(0xFFE0646B),
+    iconColor: Colors.white,
+    cardColor: Colors.black.withOpacity(0.5),
+    appBarColor: Colors.grey,
   ),
   ThemeModel(
     name: 'Summer',
@@ -154,11 +181,14 @@ final List<ThemeModel> themes = [
     tabBarColor: const Color(0xFF6FCCA9), // Keep the same tab bar color
     tabBarSelectedItemColor:
         Colors.white, // White selected tab item for good contrast
-    tabBarUnselectedItemColor:
-        const Color.fromARGB(255, 232, 240, 224), // Light unselected tab item color
+    tabBarUnselectedItemColor: const Color.fromARGB(
+        255, 232, 240, 224), // Light unselected tab item color
     backgroundImage: 'assets/images/summer.jpg', // Same background image
     textColor: const Color(
         0xFF4D4D4D), // Darker text color for better contrast against light backgrounds
+    iconColor: Colors.white,
+    cardColor: Colors.black.withOpacity(0.5),
+    appBarColor: Colors.grey,
   ),
 
   // ThemeModel(
@@ -190,12 +220,15 @@ final List<ThemeModel> themes = [
         0xFF73D2F4), // Lighter blue for a fresh water-like appearance
     tabBarSelectedItemColor:
         Colors.white, // White for clear selection visibility
-    tabBarUnselectedItemColor:
-        const Color.fromARGB(255, 229, 246, 254), // Soft light blue for unselected tabs
+    tabBarUnselectedItemColor: const Color.fromARGB(
+        255, 229, 246, 254), // Soft light blue for unselected tabs
     backgroundImage:
         'assets/images/water2.jpg', // Keep the water background image
     textColor: const Color(
         0xFFE0F7FA), // Very light aqua color to stand out against the darker blue background
+    iconColor: Colors.white,
+    cardColor: Colors.black.withOpacity(0.5),
+    appBarColor: Colors.grey,
   ),
 
   // ThemeModel(
@@ -227,6 +260,9 @@ final List<ThemeModel> themes = [
     tabBarUnselectedItemColor: const Color(0xFFA36589),
     backgroundImage: 'assets/images/water.jpg',
     textColor: const Color(0xFF421C38),
+    iconColor: Colors.white,
+    cardColor: Colors.black.withOpacity(0.5),
+    appBarColor: Colors.grey,
   ),
   ThemeModel(
     name: 'Fire',
@@ -242,6 +278,9 @@ final List<ThemeModel> themes = [
     tabBarUnselectedItemColor: const Color(0xFF6F5F46),
     backgroundImage: 'assets/images/fire2.jpg',
     textColor: const Color(0xFFDBD6C9),
+    iconColor: Colors.white,
+    cardColor: Colors.black.withOpacity(0.5),
+    appBarColor: Colors.grey,
   ),
   ThemeModel(
     name: 'Fire',
@@ -257,6 +296,9 @@ final List<ThemeModel> themes = [
     tabBarUnselectedItemColor: const Color(0xFFF0EC9D),
     backgroundImage: 'assets/images/fire.jpg',
     textColor: const Color(0xFFF0EC9D),
+    iconColor: Colors.white,
+    cardColor: Colors.black.withOpacity(0.5),
+    appBarColor: Colors.grey,
   ),
   ThemeModel(
     name: 'Animal',
@@ -272,6 +314,9 @@ final List<ThemeModel> themes = [
     tabBarUnselectedItemColor: const Color(0xFF61667A),
     backgroundImage: 'assets/images/animal.jpg',
     textColor: const Color(0xFFD9D9D9),
+    iconColor: Colors.white,
+    cardColor: Colors.black.withOpacity(0.5),
+    appBarColor: Colors.grey,
   ),
   ThemeModel(
     name: 'Animal',
@@ -291,5 +336,8 @@ final List<ThemeModel> themes = [
     backgroundImage: 'assets/images/animal2.jpg', // Animal-themed image
     textColor: const Color(
         0xFF4A3621), // Rich dark brown for readability and contrast against the lighter background
+    iconColor: Colors.white,
+    cardColor: Colors.black.withOpacity(0.5),
+    appBarColor: Colors.grey,
   ),
 ];

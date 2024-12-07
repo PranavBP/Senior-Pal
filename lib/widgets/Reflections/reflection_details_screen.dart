@@ -35,6 +35,8 @@ class ReflectionDetailsScreen extends ConsumerWidget {
         backgroundColor: theme.backgroundColor, // Dynamic background color
       ),
       body: Container(
+        width: double.infinity, // Ensures full width
+        height: double.infinity, // Ensures full height
         decoration: BoxDecoration(
           gradient: LinearGradient(
             colors:
@@ -47,13 +49,13 @@ class ReflectionDetailsScreen extends ConsumerWidget {
           padding: const EdgeInsets.all(16.0),
           child: SingleChildScrollView(
             child: Card(
-              elevation: 4,
+              elevation: 6,
               shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(12),
+                borderRadius: BorderRadius.circular(16), // Softer corners
               ),
               color: theme.cardColor, // Dynamic card background color
               child: Container(
-                padding: const EdgeInsets.all(16),
+                padding: const EdgeInsets.all(20),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -80,17 +82,23 @@ class ReflectionDetailsScreen extends ConsumerWidget {
                       ),
                     ),
                     const SizedBox(height: 20),
+                    const Divider(
+                      thickness: 1,
+                      color: Colors.black12,
+                    ),
+                    const SizedBox(height: 20),
                     // Metadata: Mood
                     Row(
                       children: [
                         const Icon(
                           Icons.sentiment_satisfied_alt,
                           color: Colors.orangeAccent,
+                          size: 24,
                         ),
-                        const SizedBox(width: 8),
-                        const Text(
-                          'Mood: N/A',
-                          style: TextStyle(
+                        const SizedBox(width: 10),
+                        Text(
+                          'Mood: ${reflection.mood ?? 'N/A'}',
+                          style: const TextStyle(
                             fontSize: 16,
                             fontWeight: FontWeight.bold,
                             color: Colors.black, // Black text for metadata
@@ -98,15 +106,16 @@ class ReflectionDetailsScreen extends ConsumerWidget {
                         ),
                       ],
                     ),
-                    const SizedBox(height: 10),
+                    const SizedBox(height: 15),
                     // Metadata: Word Count
                     Row(
                       children: [
                         const Icon(
                           Icons.text_snippet,
                           color: Colors.greenAccent,
+                          size: 24,
                         ),
-                        const SizedBox(width: 8),
+                        const SizedBox(width: 10),
                         Text(
                           'Word Count: ${reflection.content.split(' ').length}',
                           style: const TextStyle(

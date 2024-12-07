@@ -13,6 +13,9 @@ class ThemeModel {
   final Color tabBarUnselectedItemColor;
   final String backgroundImage;
   final Color textColor;
+  final Color iconColor;
+  final Color cardColor;
+  final Color appBarColor;
   // final TextStyle headerFont;
   // final TextStyle textFont;
   // final TextStyle captionFont;
@@ -28,14 +31,17 @@ class ThemeModel {
     required this.tabBarUnselectedItemColor,
     required this.backgroundImage,
     required this.textColor,
+    required this.iconColor,
+    required this.cardColor,
+    required this.appBarColor,
     // required this.headerFont,
     // required this.textFont,
     // required this.captionFont,
   });
 
-  get iconColor => null;
+  //get iconColor => null;
 
-  get cardColor => null;
+  //get cardColor => null;
 
-  get appBarColor => null;
+  //get appBarColor => null;
 }
