@@ -62,8 +62,7 @@ class PastReflectionsScreen extends ConsumerWidget {
                               Icon(
                                 Icons.book_outlined,
                                 size: 120,
-                                color: theme.textColor
-                                    .withOpacity(0.8), // Updated icon color
+                                color: theme.textColor.withOpacity(0.8),
                               ),
                               const SizedBox(height: 24),
                               Text(
@@ -71,7 +70,7 @@ class PastReflectionsScreen extends ConsumerWidget {
                                 style: TextStyle(
                                   fontSize: 22,
                                   fontWeight: FontWeight.bold,
-                                  color: theme.textColor, // Dynamic text color
+                                  color: theme.textColor,
                                 ),
                                 textAlign: TextAlign.center,
                               ),
@@ -80,8 +79,7 @@ class PastReflectionsScreen extends ConsumerWidget {
                                 "It looks like you don’t have any reflections yet. Start documenting your thoughts and track your progress over time.",
                                 style: TextStyle(
                                   fontSize: 16,
-                                  color: theme.textColor.withOpacity(
-                                      0.7), // Dynamic text color with opacity
+                                  color: theme.textColor.withOpacity(0.7),
                                 ),
                                 textAlign: TextAlign.center,
                               ),
@@ -91,10 +89,8 @@ class PastReflectionsScreen extends ConsumerWidget {
                                   Navigator.pop(context); // Go back
                                 },
                                 style: ElevatedButton.styleFrom(
-                                  backgroundColor: theme
-                                      .textColor, // Updated button background
-                                  foregroundColor: theme
-                                      .backgroundColor, // Button text color
+                                  backgroundColor: theme.textColor,
+                                  foregroundColor: theme.backgroundColor,
                                   padding: const EdgeInsets.symmetric(
                                       horizontal: 32, vertical: 12),
                                   shape: RoundedRectangleBorder(
@@ -133,8 +129,7 @@ class PastReflectionsScreen extends ConsumerWidget {
                                     style: TextStyle(
                                       fontSize: 18,
                                       fontWeight: FontWeight.bold,
-                                      color:
-                                          theme.textColor, // Dynamic text color
+                                      color: theme.textColor,
                                     ),
                                   ),
                                 ),
@@ -146,73 +141,82 @@ class PastReflectionsScreen extends ConsumerWidget {
                                     shape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(12),
                                     ),
-                                    color: Colors.white
-                                        .withOpacity(0.9), // Light opaque color
-                                    child: ListTile(
-                                      title: Text(
-                                        reflection.title,
-                                        style: TextStyle(
-                                          fontWeight: FontWeight.bold,
-                                          fontSize: 16,
-                                          color: theme
-                                              .textColor, // Dynamic text color
-                                        ),
-                                      ),
-                                      subtitle: Column(
-                                        crossAxisAlignment:
-                                            CrossAxisAlignment.start,
-                                        children: [
-                                          Text(
-                                            reflection.content,
-                                            maxLines: 2,
-                                            overflow: TextOverflow.ellipsis,
-                                            style: TextStyle(
-                                              fontStyle: FontStyle.italic,
-                                              color: theme.textColor.withOpacity(
-                                                  0.8), // Dynamic text color with opacity
-                                            ),
-                                          ),
-                                          const SizedBox(height: 4),
-                                          Row(
-                                            children: [
-                                              Text(
-                                                "Mood: ${reflection.mood ?? 'N/A'}",
-                                                style: TextStyle(
-                                                  color: theme.textColor
-                                                      .withOpacity(
-                                                          0.7), // Dynamic text color with opacity
-                                                  fontSize: 12,
-                                                ),
-                                              ),
-                                              const Spacer(),
-                                              Text(
-                                                "Words: ${reflection.content.split(' ').length}",
-                                                style: TextStyle(
-                                                  color: theme.textColor
-                                                      .withOpacity(
-                                                          0.7), // Dynamic text color with opacity
-                                                  fontSize: 12,
-                                                ),
-                                              ),
-                                            ],
+                                    child: Container(
+                                      decoration: BoxDecoration(
+                                        color: Colors.white, // Light color
+                                        borderRadius: BorderRadius.circular(12),
+                                        boxShadow: [
+                                          BoxShadow(
+                                            color: Colors.black.withOpacity(
+                                                0.05), // Opaque layer
+                                            spreadRadius: 1,
+                                            blurRadius: 5,
+                                            offset: const Offset(0, 3),
                                           ),
                                         ],
                                       ),
-                                      trailing: Icon(
-                                        Icons.arrow_forward,
-                                        color: theme
-                                            .textColor, // Dynamic icon color
-                                      ),
-                                      onTap: () {
-                                        Navigator.push(
-                                          context,
-                                          MaterialPageRoute(
-                                            builder: (context) =>
-                                                ReflectionDetailsScreen(
-                                                    reflection: reflection),
+                                      child: ListTile(
+                                        title: Text(
+                                          reflection.title,
+                                          style: TextStyle(
+                                            fontWeight: FontWeight.bold,
+                                            fontSize: 16,
+                                            color: theme.textColor,
                                           ),
-                                        );
-                                      },
+                                        ),
+                                        subtitle: Column(
+                                          crossAxisAlignment:
+                                              CrossAxisAlignment.start,
+                                          children: [
+                                            Text(
+                                              reflection.content,
+                                              maxLines: 2,
+                                              overflow: TextOverflow.ellipsis,
+                                              style: TextStyle(
+                                                fontStyle: FontStyle.italic,
+                                                color: theme.textColor
+                                                    .withOpacity(0.8),
+                                              ),
+                                            ),
+                                            const SizedBox(height: 4),
+                                            Row(
+                                              children: [
+                                                Text(
+                                                  "Mood: ${reflection.mood ?? 'N/A'}",
+                                                  style: TextStyle(
+                                                    color: theme.textColor
+                                                        .withOpacity(0.7),
+                                                    fontSize: 12,
+                                                  ),
+                                                ),
+                                                const Spacer(),
+                                                Text(
+                                                  "Words: ${reflection.content.split(' ').length}",
+                                                  style: TextStyle(
+                                                    color: theme.textColor
+                                                        .withOpacity(0.7),
+                                                    fontSize: 12,
+                                                  ),
+                                                ),
+                                              ],
+                                            ),
+                                          ],
+                                        ),
+                                        trailing: Icon(
+                                          Icons.arrow_forward,
+                                          color: theme.textColor,
+                                        ),
+                                        onTap: () {
+                                          Navigator.push(
+                                            context,
+                                            MaterialPageRoute(
+                                              builder: (context) =>
+                                                  ReflectionDetailsScreen(
+                                                      reflection: reflection),
+                                            ),
+                                          );
+                                        },
+                                      ),
                                     ),
                                   );
                                 }).toList(),

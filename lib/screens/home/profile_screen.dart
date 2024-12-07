@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:image_picker/image_picker.dart'; // For picking images
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_storage/firebase_storage.dart'; // For Firebase Storage
 import 'package:hero_minds/managers/auth_manager.dart';
 import 'package:hero_minds/provider/theme_provider.dart';
 import 'package:hero_minds/widgets/Common/custom_app_bar.dart';
@@ -20,6 +21,7 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
   final user = FirebaseAuth.instance.currentUser;
   File? _profileImage; // To store the selected image file
   final ImagePicker _picker = ImagePicker(); // Image picker instance
+  bool _isUploading = false; // To track the upload process
 
   // Function to pick image from gallery with error handling
   Future<void> _pickImage() async {
@@ -30,17 +32,58 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
         setState(() {
           _profileImage = File(pickedFile.path);
         });
+        // Upload the image to Firebase Storage
+        await _uploadProfileImage();
       } else {
-        // Handle case where user cancels image picking
         print('No image selected.');
       }
     } on PlatformException catch (e) {
-      // Catch platform-specific exceptions (like permission denial)
       print('Failed to pick image: $e');
-      // You can show a dialog or a Snackbar to notify the user
     } catch (e) {
-      // Generic error handler
       print('Error picking image: $e');
+    }
+  }
+
+  // Function to upload the image to Firebase Storage and update photoURL
+  Future<void> _uploadProfileImage() async {
+    if (_profileImage == null) return;
+
+    setState(() {
+      _isUploading = true; // Show a loading indicator during upload
+    });
+
+    try {
+      // Create a reference to Firebase Storage
+      final storageRef = FirebaseStorage.instance
+          .ref()
+          .child('profile_images/${user?.uid}.jpg');
+
+      // Upload the file
+      await storageRef.putFile(_profileImage!);
+
+      // Get the download URL
+      final downloadURL = await storageRef.getDownloadURL();
+
+      // Update the Firebase user's photoURL
+      await user?.updatePhotoURL(downloadURL);
+      await user?.reload(); // Reload the user to reflect changes
+
+      setState(() {
+        _profileImage = null; // Clear the local image file after upload
+      });
+
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Profile picture updated successfully!')),
+      );
+    } catch (e) {
+      print('Error uploading profile image: $e');
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Failed to update profile picture.')),
+      );
+    } finally {
+      setState(() {
+        _isUploading = false; // Stop the loading indicator
+      });
     }
   }
 
@@ -91,43 +134,61 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
           Positioned.fill(
             child: Column(
               children: [
-                // Spacing to push content lower
                 SizedBox(
                   height: MediaQuery.of(context).size.height * 0.25,
                 ),
 
-                // Profile Picture with Image picker option
+                // Profile Picture with Image Picker option
                 GestureDetector(
-                  onTap: _pickImage, // Trigger image picking on tap
-                  child: CircleAvatar(
-                    radius: 50,
-                    backgroundImage: _profileImage != null
-                        ? FileImage(_profileImage!)
-                        : (user?.photoURL != null
-                            ? NetworkImage(user!.photoURL!)
-                            : const AssetImage('assets/images/profile_pic.jpeg')
-                                as ImageProvider),
-                    child: Align(
-                      alignment: Alignment.bottomRight,
-                      child: CircleAvatar(
-                        backgroundColor: Colors.grey[300],
-                        radius: 16,
-                        child: const Icon(
-                          Icons.edit,
-                          size: 18,
-                          color: Colors.black,
+                  onTap: _pickImage,
+                  child: Stack(
+                    children: [
+                      CircleAvatar(
+                        radius: 50,
+                        backgroundImage: _profileImage != null
+                            ? FileImage(_profileImage!)
+                            : (user?.photoURL != null
+                                ? NetworkImage(user!.photoURL!)
+                                : const AssetImage(
+                                        'assets/images/profile_pic.jpeg')
+                                    as ImageProvider),
+                      ),
+                      if (_isUploading)
+                        Positioned.fill(
+                          child: Container(
+                            decoration: BoxDecoration(
+                              color: Colors.black.withOpacity(0.5),
+                              shape: BoxShape.circle,
+                            ),
+                            child: const Center(
+                              child: CircularProgressIndicator(
+                                color: Colors.white,
+                              ),
+                            ),
+                          ),
+                        ),
+                      Positioned(
+                        bottom: 0,
+                        right: 0,
+                        child: CircleAvatar(
+                          backgroundColor: Colors.grey[300],
+                          radius: 16,
+                          child: const Icon(
+                            Icons.edit,
+                            size: 18,
+                            color: Colors.black,
+                          ),
                         ),
                       ),
-                    ),
+                    ],
                   ),
                 ),
 
                 const SizedBox(height: 12),
 
-                // First Name, Last Name (displayName from Firebase- not working)
-                // Displaying the first name with a fallback
+                // First Name, Last Name
                 Text(
-                  "Hello, ${user?._userFullName ?? "User"}", // If firstName is null, "User" is shown
+                  "Hello, ${user?.displayName ?? "User"}",
                   style: TextStyle(
                     color: currentTheme.textColor,
                     fontSize: 16.0,
@@ -137,7 +198,7 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
 
                 const SizedBox(height: 8),
 
-                // Displaying the email
+                // Email
                 Text(
                   "Signed in as ${user?.email}",
                   style: TextStyle(
@@ -147,19 +208,20 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
                   ),
                 ),
 
-                const SizedBox(
-                  height: 16,
-                ),
+                const SizedBox(height: 16),
 
-                // Buttons (User, Daily Checking, Sign Out)
+                // Buttons
                 Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 40.0),
                   child: Column(
                     children: [
-                      // User Button
+                      // User Dummy Button
                       ElevatedButton(
                         onPressed: () {
-                          // Implement user-specific action here
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(
+                                content: Text('User button clicked!')),
+                          );
                         },
                         style: ElevatedButton.styleFrom(
                           backgroundColor: currentTheme.tabBarColor,
@@ -180,10 +242,14 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
 
                       const SizedBox(height: 12),
 
-                      // Daily Checking Button
+                      // Daily Check-In Dummy Button
                       ElevatedButton(
                         onPressed: () {
-                          // Implement daily checking functionality
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(
+                                content:
+                                    Text('Daily Check-In button clicked!')),
+                          );
                         },
                         style: ElevatedButton.styleFrom(
                           backgroundColor: currentTheme.tabBarColor,
@@ -199,7 +265,7 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
                             fontWeight: FontWeight.bold,
                           ),
                         ),
-                        child: const Text("Daily Checking"),
+                        child: const Text("Daily Check-In"),
                       ),
 
                       const SizedBox(height: 12),
@@ -207,7 +273,6 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
                       // Sign Out Button
                       ElevatedButton(
                         onPressed: () {
-                          // Call AuthManager to sign out user
                           AuthManager().signOutUser();
                           Navigator.of(context).pop();
                         },
@@ -236,8 +301,4 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
       ),
     );
   }
-}
-
-extension on User? {
-  get _userFullName => null;
 }

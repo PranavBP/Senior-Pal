@@ -41,6 +41,27 @@ class _ReflectionsScreenState extends ConsumerState<ReflectionsScreen> {
       isEditing = true;
     }
     formattedDate = DateFormat('MMMM d, yyyy').format(DateTime.now());
+
+    // Add listeners to detect field changes
+    titleController.addListener(_checkIfChanged);
+    contentController.addListener(_checkIfChanged);
+  }
+
+  bool _hasChanges() {
+    // Check if there are any changes made
+    if (widget.reflection != null) {
+      return titleController.text != widget.reflection!.title ||
+          contentController.text != widget.reflection!.content ||
+          selectedMood != widget.reflection!.mood;
+    } else {
+      return titleController.text.isNotEmpty ||
+          contentController.text.isNotEmpty ||
+          selectedMood != null;
+    }
+  }
+
+  void _checkIfChanged() {
+    setState(() {}); // Trigger UI update to enable/disable Cancel button
   }
 
   void saveReflection() {
@@ -99,29 +120,16 @@ class _ReflectionsScreenState extends ConsumerState<ReflectionsScreen> {
   }
 
   void cancelEditing() {
-    if (titleController.text.isNotEmpty || contentController.text.isNotEmpty) {
-      showDialog(
-        context: context,
-        builder: (context) => AlertDialog(
-          title: const Text('Discard Changes?'),
-          content: const Text(
-              'You have unsaved changes. Are you sure you want to cancel?'),
-          actions: [
-            TextButton(
-              onPressed: () => Navigator.of(context).pop(),
-              child: const Text('No'),
-            ),
-            TextButton(
-              onPressed: () {
-                Navigator.of(context).pop();
-                Navigator.of(context).pop();
-              },
-              child: const Text('Yes'),
-            ),
-          ],
-        ),
-      );
-    } else {
+    // Clear all input fields and reset the state
+    titleController.clear();
+    contentController.clear();
+    setState(() {
+      selectedMood = null;
+      isEditing = false;
+    });
+
+    // Navigate back only if the user can pop back in the navigation stack
+    if (Navigator.canPop(context)) {
       Navigator.of(context).pop();
     }
   }
@@ -234,9 +242,11 @@ class _ReflectionsScreenState extends ConsumerState<ReflectionsScreen> {
                           child: const Text('Save'),
                         ),
                         TextButton(
-                          onPressed: cancelEditing,
+                          onPressed: _hasChanges() ? cancelEditing : null,
                           style: TextButton.styleFrom(
-                            foregroundColor: theme.textColor.withOpacity(0.7),
+                            foregroundColor: _hasChanges()
+                                ? theme.textColor.withOpacity(0.7)
+                                : theme.textColor.withOpacity(0.4),
                           ),
                           child: const Text('Cancel'),
                         ),
