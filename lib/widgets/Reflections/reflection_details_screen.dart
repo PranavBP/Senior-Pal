@@ -24,7 +24,6 @@ class ReflectionDetailsScreen extends ConsumerWidget {
           ),
         ),
         child: SafeArea(
-          // Ensures content is positioned below the notch
           child: Padding(
             padding: const EdgeInsets.all(16.0),
             child: Column(
@@ -36,7 +35,7 @@ class ReflectionDetailsScreen extends ConsumerWidget {
                     IconButton(
                       icon: Icon(Icons.arrow_back, color: theme.textColor),
                       onPressed: () =>
-                          Navigator.of(context).pop(), // Fixes back button
+                          Navigator.of(context).pop(), // Back button action
                     ),
                     const SizedBox(width: 16),
                     Text(
@@ -49,7 +48,7 @@ class ReflectionDetailsScreen extends ConsumerWidget {
                     ),
                   ],
                 ),
-                const SizedBox(height: 16), // Space below header
+                const SizedBox(height: 16), // Space below the header
                 // Reflection Details Content
                 Expanded(
                   child: SingleChildScrollView(
@@ -59,14 +58,14 @@ class ReflectionDetailsScreen extends ConsumerWidget {
                         borderRadius:
                             BorderRadius.circular(16), // Softer corners
                       ),
-                      color: theme.cardColor
-                          .withOpacity(0.9), // Semi-transparent card
+                      color: Colors.white
+                          .withOpacity(0.9), // Light opaque background
                       child: Container(
                         padding: const EdgeInsets.all(20),
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(16),
-                          color: theme.cardColor
-                              .withOpacity(0.9), // Opaque layer effect
+                          color: Colors.white
+                              .withOpacity(0.9), // Light opaque layer effect
                         ),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -91,7 +90,7 @@ class ReflectionDetailsScreen extends ConsumerWidget {
                                 fontSize: 16,
                                 height: 1.6,
                                 color: theme.textColor.withOpacity(
-                                    0.8), // Dynamic text color with opacity
+                                    0.9), // Dynamic text color with contrast
                               ),
                             ),
                             const SizedBox(height: 20),

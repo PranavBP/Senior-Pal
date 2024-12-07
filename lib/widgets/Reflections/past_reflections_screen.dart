@@ -146,8 +146,8 @@ class PastReflectionsScreen extends ConsumerWidget {
                                     shape: RoundedRectangleBorder(
                                       borderRadius: BorderRadius.circular(12),
                                     ),
-                                    color: theme.cardColor.withOpacity(
-                                        0.9), // Adjust card background for contrast
+                                    color: Colors.white
+                                        .withOpacity(0.9), // Light opaque color
                                     child: ListTile(
                                       title: Text(
                                         reflection.title,
