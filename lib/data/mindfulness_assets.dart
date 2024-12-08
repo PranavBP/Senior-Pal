@@ -2,8 +2,72 @@ import 'package:hero_minds/models/meditation_model.dart';
 
 final List<Meditation> mindfulnessItems = [
   Meditation(
+      title: "Sitting Meditation Open Awareness",
+      description:
+          "Settle into stillness with this sitting meditation practice. Open your awareness to the present moment, allowing thoughts and sensations to come and go naturally, fostering clarity, calm, and a deep connection to your inner self.",
+      duration: 2746,
+      track: "sitting-meditation-open-awareness",
+      trackExtension: "m4a",
+      image: "assets/mindfulness/photo16.jpg",
+      backgroundVideo: "sittingMedi"),
+  Meditation(
+      title: "40 Min Body Scan",
+      description:
+          "Embark on a journey of calm and clarity with this body scan practice. Tune into each part of your body, releasing tension and cultivating a profound sense of inner peace.",
+      duration: 2452,
+      track: "pholland-body-scan-1",
+      trackExtension: "m4a",
+      image: "assets/mindfulness/photo15.jpg",
+      backgroundVideo: "fiveMinBS"),
+  Meditation(
+      title: "20 Min Open Awareness",
+      description:
+          "Expand your mind and embrace the present moment with this 20-minute open awareness practice. Gently observe your thoughts, sensations, and surroundings without judgment, fostering a profound sense of clarity, acceptance, and connection to the world around you.",
+      duration: 1206,
+      track: "open-awareness-20",
+      trackExtension: "m4a",
+      image: "assets/mindfulness/photo14.jpg",
+      backgroundVideo: "walking"),
+  Meditation(
+      title: "Lying Down Yoga",
+      description:
+          "Center your mind and find clarity with this 12-minute focused attention practice. A simple yet powerful way to sharpen awareness and cultivate inner peace.",
+      duration: 2480,
+      track: "lying-down-yoga",
+      trackExtension: "m4a",
+      image: "assets/mindfulness/photo13.jpg",
+      backgroundVideo: "mindfulMove"),
+  Meditation(
+      title: "12 Min Focused Attention",
+      description:
+          "Center your mind and find clarity with this 12-minute focused attention practice. A simple yet powerful way to sharpen awareness and cultivate inner peace.",
+      duration: 801,
+      track: "focused-attention-12",
+      trackExtension: "m4a",
+      image: "assets/mindfulness/photo12.jpg",
+      backgroundVideo: "tenMinBS"),
+  Meditation(
+      title: "20 Min Chair Yoga",
+      description:
+          "Discover the perfect blend of gentle movement and mindful breathing with this 20-minute chair yoga session. Designed for all levels, this practice invites you to release tension, improve flexibility, and reconnect with your body—all from the comfort of your chair. Embrace a moment of calm and rejuvenation wherever you are.",
+      duration: 1394,
+      track: "chair-yoga-20",
+      trackExtension: "m4a",
+      image: "assets/mindfulness/photo11.jpg",
+      backgroundVideo: "tenMinBreathe"),
+  Meditation(
+      title: "20 Min Body Scan",
+      description:
+          "Immerse yourself in a deeper exploration of your inner world with this 20-minute body scan. Gently guide your attention through each part of your body, uncovering a profound sense of relaxation, balance, and heightened self-awareness. A tranquil journey to reconnect with your true self awaits.",
+      duration: 1240,
+      track: "body-scan-20-holland",
+      trackExtension: "m4a",
+      image: "assets/mindfulness/photo10.jpg",
+      backgroundVideo: "simplyListen"),
+  Meditation(
       title: "Loving Kindness",
-      description: "In a busy and uncertain world, simple acts of love and kindness shine brightly. A smile, kind word, or helping hand can transform someone's day and create ripples of positivity. Love brings people together, fostering belonging and mutual respect. By embracing love and kindness, we uplift others and enrich our own lives, making the world more compassionate and harmonious.",
+      description:
+          "In a busy and uncertain world, simple acts of love and kindness shine brightly. A smile, kind word, or helping hand can transform someone's day and create ripples of positivity. Love brings people together, fostering belonging and mutual respect. By embracing love and kindness, we uplift others and enrich our own lives, making the world more compassionate and harmonious.",
       duration: 459,
       track: "LovingAndKindness",
       trackExtension: "m4a",
