@@ -58,14 +58,12 @@ class ReflectionDetailsScreen extends ConsumerWidget {
                         borderRadius:
                             BorderRadius.circular(16), // Softer corners
                       ),
-                      color: Colors.white
-                          .withOpacity(0.9), // Light opaque background
+                      color: theme.boxColor, // Using the theme's boxColor
                       child: Container(
                         padding: const EdgeInsets.all(20),
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(16),
-                          color: Colors.white
-                              .withOpacity(0.9), // Light opaque layer effect
+                          color: theme.boxColor, // Theme-specific box color
                         ),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,

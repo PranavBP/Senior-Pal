@@ -11,10 +11,9 @@ class PastReflectionsScreen extends ConsumerWidget {
 
   @override
   Widget build(BuildContext context, WidgetRef ref) {
-    final reflections = ref.watch(reflectionListProvider); // Reflection list
-    final theme = ref.watch(themeNotifierProvider); // Access the theme
+    final reflections = ref.watch(reflectionListProvider);
+    final theme = ref.watch(themeNotifierProvider);
 
-    // Group reflections by date
     final Map<String, List<Reflection>> groupedReflections = {};
     for (var reflection in reflections) {
       final formattedDate =
@@ -34,14 +33,11 @@ class PastReflectionsScreen extends ConsumerWidget {
         ),
         backgroundColor: theme.backgroundGradient[0],
         elevation: 4,
-        centerTitle: false,
       ),
       body: Container(
-        width: double.infinity,
-        height: double.infinity,
         decoration: BoxDecoration(
           gradient: LinearGradient(
-            colors: theme.backgroundGradient, // Unified gradient
+            colors: theme.backgroundGradient,
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
           ),
@@ -49,64 +45,58 @@ class PastReflectionsScreen extends ConsumerWidget {
         child: Padding(
           padding: const EdgeInsets.all(16.0),
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Expanded(
                 child: reflections.isEmpty
                     ? Center(
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                          child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              Icon(
-                                Icons.book_outlined,
-                                size: 120,
-                                color: theme.textColor.withOpacity(0.8),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Icon(
+                              Icons.book_outlined,
+                              size: 120,
+                              color: theme.textColor.withOpacity(0.8),
+                            ),
+                            const SizedBox(height: 24),
+                            Text(
+                              "Your journey starts here!",
+                              style: TextStyle(
+                                fontSize: 22,
+                                fontWeight: FontWeight.bold,
+                                color: theme.textColor,
                               ),
-                              const SizedBox(height: 24),
-                              Text(
-                                "Your journey starts here!",
-                                style: TextStyle(
-                                  fontSize: 22,
-                                  fontWeight: FontWeight.bold,
-                                  color: theme.textColor,
+                              textAlign: TextAlign.center,
+                            ),
+                            const SizedBox(height: 8),
+                            Text(
+                              "It looks like you don’t have any reflections yet. Start documenting your thoughts and track your progress over time.",
+                              style: TextStyle(
+                                fontSize: 16,
+                                color: theme.textColor.withOpacity(0.7),
+                              ),
+                              textAlign: TextAlign.center,
+                            ),
+                            const SizedBox(height: 24),
+                            ElevatedButton(
+                              onPressed: () => Navigator.pop(context),
+                              style: ElevatedButton.styleFrom(
+                                backgroundColor: theme.textColor,
+                                foregroundColor: theme.backgroundColor,
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 32, vertical: 12),
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(20),
                                 ),
-                                textAlign: TextAlign.center,
                               ),
-                              const SizedBox(height: 8),
-                              Text(
-                                "It looks like you don’t have any reflections yet. Start documenting your thoughts and track your progress over time.",
+                              child: const Text(
+                                "Add Your First Reflection",
                                 style: TextStyle(
                                   fontSize: 16,
-                                  color: theme.textColor.withOpacity(0.7),
-                                ),
-                                textAlign: TextAlign.center,
-                              ),
-                              const SizedBox(height: 24),
-                              ElevatedButton(
-                                onPressed: () {
-                                  Navigator.pop(context); // Go back
-                                },
-                                style: ElevatedButton.styleFrom(
-                                  backgroundColor: theme.textColor,
-                                  foregroundColor: theme.backgroundColor,
-                                  padding: const EdgeInsets.symmetric(
-                                      horizontal: 32, vertical: 12),
-                                  shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(20),
-                                  ),
-                                ),
-                                child: const Text(
-                                  "Add Your First Reflection",
-                                  style: TextStyle(
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.bold,
-                                  ),
+                                  fontWeight: FontWeight.bold,
                                 ),
                               ),
-                            ],
-                          ),
+                            ),
+                          ],
                         ),
                       )
                     : ListView.builder(
@@ -121,16 +111,12 @@ class PastReflectionsScreen extends ConsumerWidget {
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                Padding(
-                                  padding:
-                                      const EdgeInsets.symmetric(vertical: 8.0),
-                                  child: Text(
-                                    date,
-                                    style: TextStyle(
-                                      fontSize: 18,
-                                      fontWeight: FontWeight.bold,
-                                      color: theme.textColor,
-                                    ),
+                                Text(
+                                  date,
+                                  style: TextStyle(
+                                    fontSize: 18,
+                                    fontWeight: FontWeight.bold,
+                                    color: theme.textColor,
                                   ),
                                 ),
                                 ...reflectionsForDate.map((reflection) {
@@ -143,17 +129,9 @@ class PastReflectionsScreen extends ConsumerWidget {
                                     ),
                                     child: Container(
                                       decoration: BoxDecoration(
-                                        color: Colors.white, // Light color
+                                        color: theme
+                                            .boxColor, // Dynamically using the theme's boxColor
                                         borderRadius: BorderRadius.circular(12),
-                                        boxShadow: [
-                                          BoxShadow(
-                                            color: Colors.black.withOpacity(
-                                                0.05), // Opaque layer
-                                            spreadRadius: 1,
-                                            blurRadius: 5,
-                                            offset: const Offset(0, 3),
-                                          ),
-                                        ],
                                       ),
                                       child: ListTile(
                                         title: Text(

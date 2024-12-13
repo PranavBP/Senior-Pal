@@ -19,6 +19,7 @@ final List<ThemeModel> themes = [
     iconColor: Colors.white,
     cardColor: Colors.black.withOpacity(0.5),
     appBarColor: Colors.grey,
+    boxColor: Colors.black.withOpacity(0.9),
   ),
   ThemeModel(
     name: 'Patriot',
@@ -37,6 +38,7 @@ final List<ThemeModel> themes = [
     iconColor: Colors.white,
     cardColor: Colors.black.withOpacity(0.5),
     appBarColor: Colors.grey,
+    boxColor: Colors.black,
   ),
   ThemeModel(
     name: 'Fall',
@@ -55,6 +57,7 @@ final List<ThemeModel> themes = [
     iconColor: Colors.white,
     cardColor: Colors.black.withOpacity(0.5),
     appBarColor: Colors.grey,
+    boxColor: Colors.white.withOpacity(0.5),
   ),
   ThemeModel(
     name: 'Fall',
@@ -73,6 +76,7 @@ final List<ThemeModel> themes = [
     iconColor: Colors.white,
     cardColor: Colors.black.withOpacity(0.5),
     appBarColor: Colors.grey,
+    boxColor: Colors.black,
   ),
   ThemeModel(
     name: 'Winter',
@@ -91,6 +95,7 @@ final List<ThemeModel> themes = [
     iconColor: Colors.white,
     cardColor: Colors.black.withOpacity(0.5),
     appBarColor: Colors.grey,
+    boxColor: Colors.black,
   ),
   ThemeModel(
     name: 'Winter',
@@ -109,6 +114,7 @@ final List<ThemeModel> themes = [
     iconColor: Colors.white,
     cardColor: Colors.black.withOpacity(0.5),
     appBarColor: Colors.grey,
+    boxColor: Colors.white.withOpacity(0.5),
   ),
   ThemeModel(
     name: 'Spring',
@@ -130,6 +136,7 @@ final List<ThemeModel> themes = [
     iconColor: Colors.white,
     cardColor: Colors.black.withOpacity(0.5),
     appBarColor: Colors.grey,
+    boxColor: Colors.white.withOpacity(0.5),
   ),
   ThemeModel(
     name: 'Spring',
@@ -148,6 +155,7 @@ final List<ThemeModel> themes = [
     iconColor: Colors.white,
     cardColor: Colors.black.withOpacity(0.5),
     appBarColor: Colors.grey,
+    boxColor: Colors.white.withOpacity(0.5),
   ),
   ThemeModel(
     name: 'Summer',
@@ -166,6 +174,7 @@ final List<ThemeModel> themes = [
     iconColor: Colors.white,
     cardColor: Colors.black.withOpacity(0.5),
     appBarColor: Colors.grey,
+    boxColor: Colors.white.withOpacity(0.5),
   ),
   ThemeModel(
     name: 'Summer',
@@ -189,6 +198,7 @@ final List<ThemeModel> themes = [
     iconColor: Colors.white,
     cardColor: Colors.black.withOpacity(0.5),
     appBarColor: Colors.grey,
+    boxColor: Colors.white.withOpacity(0.5),
   ),
 
   // ThemeModel(
@@ -229,6 +239,7 @@ final List<ThemeModel> themes = [
     iconColor: Colors.white,
     cardColor: Colors.black.withOpacity(0.5),
     appBarColor: Colors.grey,
+    boxColor: Colors.black,
   ),
 
   // ThemeModel(
@@ -263,6 +274,7 @@ final List<ThemeModel> themes = [
     iconColor: Colors.white,
     cardColor: Colors.black.withOpacity(0.5),
     appBarColor: Colors.grey,
+    boxColor: Colors.white.withOpacity(0.5),
   ),
   ThemeModel(
     name: 'Fire',
@@ -281,6 +293,7 @@ final List<ThemeModel> themes = [
     iconColor: Colors.white,
     cardColor: Colors.black.withOpacity(0.5),
     appBarColor: Colors.grey,
+    boxColor: Colors.black,
   ),
   ThemeModel(
     name: 'Fire',
@@ -299,6 +312,7 @@ final List<ThemeModel> themes = [
     iconColor: Colors.white,
     cardColor: Colors.black.withOpacity(0.5),
     appBarColor: Colors.grey,
+    boxColor: Colors.black,
   ),
   ThemeModel(
     name: 'Animal',
@@ -317,6 +331,7 @@ final List<ThemeModel> themes = [
     iconColor: Colors.white,
     cardColor: Colors.black.withOpacity(0.5),
     appBarColor: Colors.grey,
+    boxColor: Colors.black,
   ),
   ThemeModel(
     name: 'Animal',
@@ -339,5 +354,6 @@ final List<ThemeModel> themes = [
     iconColor: Colors.white,
     cardColor: Colors.black.withOpacity(0.5),
     appBarColor: Colors.grey,
+    boxColor: Colors.white.withOpacity(0.5),
   ),
 ];

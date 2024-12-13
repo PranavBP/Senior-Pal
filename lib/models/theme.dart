@@ -16,6 +16,7 @@ class ThemeModel {
   final Color iconColor;
   final Color cardColor;
   final Color appBarColor;
+  final Color boxColor;
   // final TextStyle headerFont;
   // final TextStyle textFont;
   // final TextStyle captionFont;
@@ -34,6 +35,7 @@ class ThemeModel {
     required this.iconColor,
     required this.cardColor,
     required this.appBarColor,
+    required this.boxColor,
     // required this.headerFont,
     // required this.textFont,
     // required this.captionFont,
