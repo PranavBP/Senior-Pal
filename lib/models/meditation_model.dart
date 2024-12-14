@@ -6,6 +6,7 @@ class Meditation {
   final String trackExtension;
   final String image;
   final String backgroundVideo;
+  final String category;
 
   Meditation({
     required this.title,
@@ -15,5 +16,6 @@ class Meditation {
     required this.trackExtension,
     required this.image,
     required this.backgroundVideo,
+    required this.category
   });
 }

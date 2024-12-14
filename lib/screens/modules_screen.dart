@@ -30,6 +30,7 @@ class ModuleScreen extends ConsumerWidget {
         children: [
           activity.modules.isNotEmpty
               ? Expanded(
+                flex: 2,
                   child: ListView.builder(
                     itemCount: activity.modules.length,
                     itemBuilder: (context, index) {
@@ -43,8 +44,9 @@ class ModuleScreen extends ConsumerWidget {
                           title: Text(
                             module.title,
                             style: const TextStyle(
-                                color: Colors.purple,
-                                fontWeight: FontWeight.bold),
+                              color: Colors.purple,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
                           trailing: Icon(
                             module.isVideo ? Icons.videocam : Icons.audiotrack,
@@ -94,6 +96,7 @@ class ModuleScreen extends ConsumerWidget {
                   height: 1,
                 ),
           Expanded(
+            flex: 1,
             child: SingleChildScrollView(
               child: activity.data ??
                   const Text(

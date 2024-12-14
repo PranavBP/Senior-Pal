@@ -1,7 +1,6 @@
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:hero_minds/data/weekly_modules/week_1/week_1.dart';
 import 'package:hero_minds/data/weekly_modules/week_4/week_4.dart';
-import 'package:hero_minds/data/weekly_modules/week_5/week_5.dart';
 import 'package:hero_minds/models/activity.dart';
 import 'package:hero_minds/models/modules.dart';
 
@@ -30,12 +29,18 @@ final List<Activity> activities = [
       //   isCompleted: false,
       //   isVideo: true,
       // ),
-      // const Module(
-      //   title: "What is stress?",
-      //   assetUrl: "https://www.youtube.com/watch?v=WuyPuH9ojCE",
-      //   isCompleted: false,
-      //   isVideo: false,
-      // ),
+      const Module(
+        title: "What is stress?",
+        assetUrl: "https://www.youtube.com/watch?v=WuyPuH9ojCE",
+        isCompleted: false,
+        isVideo: true,
+      ),
+      const Module(
+        title: "Neuroscience of Mindfulness Meditation",
+        assetUrl: "https://www.youtube.com/watch?v=vo_VANW35b0",
+        isCompleted: false,
+        isVideo: true,
+      ),
     ],
     data: const Week1()
   ),
