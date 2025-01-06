@@ -322,33 +322,36 @@ class _LoginPageState extends ConsumerState<LoginPage> {
                           fontWeight: FontWeight.bold)),
                 ),
                 const SizedBox(height: 20),
-                GestureDetector(
-                  onTap: () async {
-                    if (_emailController.text.trim().isEmpty ||
-                        _passwordController.text.trim().isEmpty) {
-                      showAlert();
-                    } else {
-                      final message = await ref
-                          .read(authProvider.notifier)
-                          .loginUser(
-                            _emailController.text.trim(),
-                            _passwordController.text.trim(),
-                          );
-                      showMessage(message ?? "Login successful!");
-                    }
-                  },
-                  child: Container(
-                    padding: const EdgeInsets.all(16.0),
-                    decoration: BoxDecoration(
-                      color: Colors.deepPurple,
-                      borderRadius: BorderRadius.circular(16.0),
-                    ),
-                    child: const Center(
-                      child: Text("Sign In",
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold,
-                              fontSize: 18.0)),
+                Padding(
+                  padding: const EdgeInsets.symmetric(
+                      horizontal: 25.0), // Adjust the value as needed
+                  child: GestureDetector(
+                    onTap: () async {
+                      if (_emailController.text.trim().isEmpty ||
+                          _passwordController.text.trim().isEmpty) {
+                        showAlert();
+                      } else {
+                        final message =
+                            await ref.read(authProvider.notifier).loginUser(
+                                  _emailController.text.trim(),
+                                  _passwordController.text.trim(),
+                                );
+                        showMessage(message ?? "Login successful!");
+                      }
+                    },
+                    child: Container(
+                      padding: const EdgeInsets.all(16.0),
+                      decoration: BoxDecoration(
+                        color: Colors.deepPurple,
+                        borderRadius: BorderRadius.circular(16.0),
+                      ),
+                      child: const Center(
+                        child: Text("Sign In",
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 18.0)),
+                      ),
                     ),
                   ),
                 ),

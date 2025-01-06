@@ -24,7 +24,7 @@ class PastReflectionsScreen extends ConsumerWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text(
-          "Past Reflections",
+          " ",
           style: TextStyle(
             color: theme.textColor,
             fontSize: 32,

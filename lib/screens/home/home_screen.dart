@@ -61,11 +61,15 @@ class _HomePageState extends ConsumerState<HomePage> {
 
   Future<bool> _shouldShowPopup() async {
     try {
-      final userId = "u_id";
+      final authNotifier = ref.read(authProvider.notifier);
+      // Await the result of initializeAuthState
+      final userId = await authNotifier.initializeAuthState();
+
+      debugPrint(userId);
+
       final databaseRef = FirebaseDatabase.instance.ref();
-      final snapshot = await databaseRef
-          .child('users/$userId/daily_checkin/lastSeenDate')
-          .get();
+      final snapshot =
+          await databaseRef.child('users/$userId/last_seen_date').get();
 
       if (snapshot.exists) {
         final lastSeenDate = snapshot.value as String;
@@ -86,11 +90,15 @@ class _HomePageState extends ConsumerState<HomePage> {
 
   Future<void> _updateLastSeenDate() async {
     try {
-      final userId = ref.read(authProvider).userId;
+      final authNotifier = ref.read(authProvider.notifier);
+
+      // Await the result of initializeAuthState
+      final userId = await authNotifier.initializeAuthState();
+      debugPrint(userId);
       final currentDate = DateFormat('MMMM d, yyyy').format(DateTime.now());
       final databaseRef = FirebaseDatabase.instance.ref();
       await databaseRef
-          .child('users/$userId/daily_checkin/$currentDate')
+          .child('users/$userId/')
           .update({'last_seen_date': currentDate});
       debugPrint("Last seen date updated to: $currentDate");
     } catch (e) {
@@ -149,8 +157,12 @@ class _HomePageState extends ConsumerState<HomePage> {
   //     debugPrint("Error checking daily check-in status: $error");
   //   });
   // }
-  void _showDailyCheckInPopup() {
-    final userId = ref.read(authProvider).userId;
+
+  void _showDailyCheckInPopup() async {
+    final authNotifier = ref.read(authProvider.notifier);
+
+    // Await the result of initializeAuthState
+    final userId = await authNotifier.initializeAuthState();
 
     if (userId == null) {
       debugPrint("Error: User ID is null. Cannot proceed with daily check-in.");
@@ -159,9 +171,10 @@ class _HomePageState extends ConsumerState<HomePage> {
 
     final currentDate = DateFormat('yyyy-MM-dd').format(DateTime.now());
 
-    _dailyCheckInController
-        .isDailyCheckInCompleted(userId, currentDate)
-        .then((isCompleted) {
+    try {
+      final isCompleted = await _dailyCheckInController.isDailyCheckInCompleted(
+          userId, currentDate);
+
       if (!isCompleted) {
         showDialog(
           context: context,
@@ -181,10 +194,49 @@ class _HomePageState extends ConsumerState<HomePage> {
           },
         );
       }
-    }).catchError((error) {
+    } catch (error) {
       debugPrint("Error checking daily check-in status: $error");
-    });
+    }
   }
+
+  // void _showDailyCheckInPopup() {
+  //   // final userId = ref.read(authProvider).userId;
+  //   final authNotifier = ref.read(authProvider.notifier);
+  //   final userId = authNotifier.initializeAuthState();
+
+  //   if (userId == null) {
+  //     debugPrint("Error: User ID is null. Cannot proceed with daily check-in.");
+  //     return; // Exit early if userId is null
+  //   }
+
+  //   final currentDate = DateFormat('yyyy-MM-dd').format(DateTime.now());
+
+  //   _dailyCheckInController
+  //       .isDailyCheckInCompleted(userId, currentDate)
+  //       .then((isCompleted) {
+  //     if (!isCompleted) {
+  //       showDialog(
+  //         context: context,
+  //         barrierDismissible:
+  //             false, // Prevent dismissing the popup without action
+  //         builder: (BuildContext context) {
+  //           return DailyCheckInPopup(
+  //             onNavigateToCheckIn: () {
+  //               Navigator.of(context).push(
+  //                 MaterialPageRoute(
+  //                   builder: (context) =>
+  //                       DailyCheckInScreen(), // Replace with your widget
+  //                 ),
+  //               );
+  //             },
+  //           );
+  //         },
+  //       );
+  //     }
+  //   }).catchError((error) {
+  //     debugPrint("Error checking daily check-in status: $error");
+  //   });
+  // }
 
   void _openProfileOverlay() {
     showModalBottomSheet(

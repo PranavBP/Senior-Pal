@@ -3,6 +3,12 @@ import 'package:firebase_auth/firebase_auth.dart';
 class AuthManager {
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
 
+  // Get current user
+  Future<User?> getCurrentUser() async {
+    final user = FirebaseAuth.instance.currentUser;
+    return user;
+  }
+
   // Register User
   Future<String?> registerUser(
       {required String email, required String password}) async {
