@@ -11,6 +11,10 @@ import 'package:hero_minds/widgets/Home/home_buttons.dart';
 import 'package:hero_minds/widgets/Home/home_greeting_text.dart';
 import 'package:hero_minds/widgets/Home/home_quote.dart';
 import 'package:hero_minds/widgets/Popup/popup_screen.dart';
+import 'package:hero_minds/widgets/Popup/daily_checkin_pop.dart';
+import 'package:hero_minds/controllers/daily_checkin_controller.dart';
+import 'package:hero_minds/screens/daily-checkin/daily_checkin_screen.dart';
+import 'package:hero_minds/provider/auth_provider.dart';
 
 class HomePage extends ConsumerStatefulWidget {
   const HomePage({super.key});
@@ -23,6 +27,7 @@ class _HomePageState extends ConsumerState<HomePage> {
   String _userFullName = 'User';
   String _dailyQuote = 'Quote of the day!';
   final UserController _userController = UserController();
+  final _dailyCheckInController = DailyCheckInController(); // Define controller
 
   @override
   void initState() {
@@ -32,10 +37,12 @@ class _HomePageState extends ConsumerState<HomePage> {
 
   Future<void> _initializeData() async {
     await _fetchData(); // Fetch user and quote data
+
     final showPopup =
-        await _shouldShowPopup(); // Check if popup should be shown
+        await _shouldShowPopup(); // Check if popup should be shown by date
     if (showPopup) {
-      _showDailyQuotePopup(); // Show popup if necessary
+      await _showDailyQuotePopup(); // daily quote popup
+      _showDailyCheckInPopup(); // daily checkin pop after quote popup
     }
   }
 
@@ -54,14 +61,14 @@ class _HomePageState extends ConsumerState<HomePage> {
 
   Future<bool> _shouldShowPopup() async {
     try {
-      final userId = "user_id"; // Replace with the user's actual ID
+      final userId = "u_id";
       final databaseRef = FirebaseDatabase.instance.ref();
-      final snapshot =
-          await databaseRef.child('users/$userId/lastSeenDate').get();
+      final snapshot = await databaseRef
+          .child('users/$userId/daily_checkin/lastSeenDate')
+          .get();
 
       if (snapshot.exists) {
-        final lastSeenDate =
-            snapshot.value as String; // Stored date in the database
+        final lastSeenDate = snapshot.value as String;
         final currentDate = DateFormat('MMMM d, yyyy').format(DateTime.now());
 
         debugPrint("Last seen date: $lastSeenDate");
@@ -79,21 +86,22 @@ class _HomePageState extends ConsumerState<HomePage> {
 
   Future<void> _updateLastSeenDate() async {
     try {
-      final userId = "user_id"; // Replace with the user's actual ID
+      final userId = ref.read(authProvider).userId;
       final currentDate = DateFormat('MMMM d, yyyy').format(DateTime.now());
       final databaseRef = FirebaseDatabase.instance.ref();
       await databaseRef
-          .child('users/$userId')
-          .update({'lastSeenDate': currentDate});
+          .child('users/$userId/daily_checkin/$currentDate')
+          .update({'last_seen_date': currentDate});
       debugPrint("Last seen date updated to: $currentDate");
     } catch (e) {
       debugPrint("Error updating last seen date: $e");
     }
   }
 
-  void _showDailyQuotePopup() {
+  Future<void> _showDailyQuotePopup() async {
     if (_dailyQuote.isNotEmpty) {
-      showDialog(
+      // Await the completion of the dialog to ensure sequential flow
+      await showDialog(
         context: context,
         barrierDismissible: false, // Prevent dismissal by tapping outside
         builder: (BuildContext context) {
@@ -107,6 +115,75 @@ class _HomePageState extends ConsumerState<HomePage> {
         },
       );
     }
+  }
+
+  // void _showDailyCheckInPopup() {
+  //   final userId = ref.read(authProvider).userId;
+  //   final currentDate = DateFormat('yyyy-MM-dd').format(DateTime.now());
+
+  //   _dailyCheckInController
+  //       .isDailyCheckInCompleted(userId!, currentDate)
+  //       .then((isCompleted) {
+  //     if (!isCompleted) {
+  //       showDialog(
+  //         context: context,
+  //         barrierDismissible:
+  //             false, // Prevent dismissing the popup without action
+  //         builder: (BuildContext context) {
+  //           return DailyCheckInPopup(
+  //             onNavigateToCheckIn: () {
+  //               // Navigator.of(context).pop(); // Close the popup
+  //               // Navigate directly without using named routes
+  //               Navigator.of(context).push(
+  //                 MaterialPageRoute(
+  //                   builder: (context) =>
+  //                       DailyCheckInScreen(), // Replace with your widget
+  //                 ),
+  //               );
+  //             },
+  //           );
+  //         },
+  //       );
+  //     }
+  //   }).catchError((error) {
+  //     debugPrint("Error checking daily check-in status: $error");
+  //   });
+  // }
+  void _showDailyCheckInPopup() {
+    final userId = ref.read(authProvider).userId;
+
+    if (userId == null) {
+      debugPrint("Error: User ID is null. Cannot proceed with daily check-in.");
+      return; // Exit early if userId is null
+    }
+
+    final currentDate = DateFormat('yyyy-MM-dd').format(DateTime.now());
+
+    _dailyCheckInController
+        .isDailyCheckInCompleted(userId, currentDate)
+        .then((isCompleted) {
+      if (!isCompleted) {
+        showDialog(
+          context: context,
+          barrierDismissible:
+              false, // Prevent dismissing the popup without action
+          builder: (BuildContext context) {
+            return DailyCheckInPopup(
+              onNavigateToCheckIn: () {
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) =>
+                        DailyCheckInScreen(), // Replace with your widget
+                  ),
+                );
+              },
+            );
+          },
+        );
+      }
+    }).catchError((error) {
+      debugPrint("Error checking daily check-in status: $error");
+    });
   }
 
   void _openProfileOverlay() {
