@@ -10,6 +10,7 @@ import 'package:hero_minds/widgets/Common/custom_app_bar.dart';
 import 'package:hero_minds/widgets/Common/gradient_layer.dart';
 import 'package:flutter/services.dart'; // For PlatformException
 import 'package:hero_minds/models/user.dart';
+import 'package:hero_minds/screens/daily-checkin/config_daily_checkin.dart';
 
 class ProfilePage extends ConsumerStatefulWidget {
   const ProfilePage({super.key});
@@ -248,9 +249,9 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
                       //   child: const Text("User"),
                       // ),
 
-                      // const SizedBox(height: 12),
+                      const SizedBox(height: 12),
 
-                      // // Daily Check-In Dummy Button
+                      // Daily Check-In Dummy Button
                       // ElevatedButton(
                       //   onPressed: () {
                       //     ScaffoldMessenger.of(context).showSnackBar(
@@ -276,7 +277,35 @@ class _ProfilePageState extends ConsumerState<ProfilePage> {
                       //   child: const Text("Daily Check-In"),
                       // ),
 
-                      // const SizedBox(height: 12),
+                      const SizedBox(height: 12),
+                      ElevatedButton(
+                        onPressed: () {
+                          // Navigate to the Notification configuration page
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) =>
+                                  ConfigureNotificationScreen(),
+                            ),
+                          );
+                        },
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor: currentTheme.tabBarColor,
+                          foregroundColor:
+                              currentTheme.tabBarUnselectedItemColor,
+                          minimumSize: const Size(double.infinity, 50),
+                          padding: const EdgeInsets.symmetric(vertical: 15),
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          textStyle: const TextStyle(
+                            fontSize: 18,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        child: const Text("Configure Daily Notification"),
+                      ),
+                      const SizedBox(height: 12),
 
                       // Sign Out Button
                       ElevatedButton(
