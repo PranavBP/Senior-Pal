@@ -32,7 +32,7 @@ final List<Meditation> mindfulnessItems = [
     trackExtension: "m4a",
     image: "assets/mindfulness/photo14.jpg",
     backgroundVideo: "walking",
-    category: "Mediation",
+    category: "Focused",
   ),
   Meditation(
     title: "Lying Down Yoga",
@@ -54,7 +54,7 @@ final List<Meditation> mindfulnessItems = [
     trackExtension: "m4a",
     image: "assets/mindfulness/photo12.jpg",
     backgroundVideo: "tenMinBS",
-    category: "Mediation",
+    category: "Focused",
   ),
   Meditation(
     title: "20 Min Chair Yoga",
@@ -87,7 +87,7 @@ final List<Meditation> mindfulnessItems = [
     trackExtension: "m4a",
     image: "assets/mindfulness/photo9.jpg",
     backgroundVideo: "lovingKind",
-    category: "Mediation",
+    category: "Focused",
   ),
   Meditation(
     title: "Simple Listening for Grounding",
@@ -98,7 +98,7 @@ final List<Meditation> mindfulnessItems = [
     trackExtension: "mp3",
     image: "assets/mindfulness/photo2.jpg",
     backgroundVideo: "simplyListen",
-    category: "Mediation",
+    category: "Focused",
   ),
   Meditation(
     title: "10 Min Breathing Exercise",
@@ -177,7 +177,7 @@ final List<Meditation> mindfulnessItems = [
     category: "Meditation",
   ),
   Meditation(
-    title: "Sleep Meditation",
+    title: "10 Min Sleep Meditation",
     description:
         "Enter the realm of sleep meditation, where the whispers of tranquility guide you into the arms of peaceful slumber. As you surrender to the embrace of each breath, may your dreams be adorned with serenity and awaken to a renewed sense of vitality.",
     duration: 591,
@@ -186,5 +186,47 @@ final List<Meditation> mindfulnessItems = [
     image: "assets/mindfulness/photo4.jpg",
     backgroundVideo: "sleepMedi",
     category: "Meditation",
-  )
+  ),
+  Meditation(
+    title: "20 Min Sleep Meditation",
+    description: "Enter the realm of sleep meditation, where the whispers of tranquility guide you into the arms of peaceful slumber. As you surrender to the embrace of each breath, may your dreams be adorned with serenity and awaken to a renewed sense of vitality.",
+    duration: 1180,
+    track: "20-min-sleep-meditation",
+    trackExtension: "m4a",
+    image: "assets/mindfulness/photo10.jpg",
+    backgroundVideo: "sittingMedi",
+    category: "Meditation",
+  ),
+  Meditation(
+    title: "Finding Breath For Grounding",
+    description: "Guide yourself to reconnect with your breath, anchoring to the present moment. Perfect for moments of stress or overwhelm, this practice cultivates calm and clarity by focusing on the natural rhythm of your breathing. Take a few minutes to center yourself and find your inner balance.",
+    duration: 167,
+    track: "finding-breath-for-grounding",
+    trackExtension: "m4a",
+    image: "assets/mindfulness/photo15.jpg",
+    backgroundVideo: "walking",
+    category: "Focused",
+  ),
+  Meditation(
+    title: "Labeling Emotions for Grounding",
+    description:
+        "This practice helps you identify and name your emotions, creating space for self-awareness and grounding. By acknowledging your feelings without judgment, you can bring clarity and calm to challenging moments. Take a step toward emotional balance and resilience.",
+    duration: 245,
+    track: "labeling-emotions-for-grounding",
+    trackExtension: "m4a",
+    image: "assets/mindfulness/photo13.jpg",
+    backgroundVideo: "mindfulMove",
+    category: "Focused",
+  ),
+  Meditation(
+    title: "Mountain Meditation For Grounding",
+    description:
+        "This meditation invites you to embody the strength and stability of a mountain, fostering a deep sense of grounding and resilience. Through visualization and mindful presence, you can cultivate inner calm and steadfastness, even in the face of life’s challenges.",
+    duration: 292,
+    track: "mountain-medi-for-grounding",
+    trackExtension: "m4a",
+    image: "assets/mindfulness/photo11.jpg",
+    backgroundVideo: "tenMinBreathe",
+    category: "Focused",
+  ),
 ];
