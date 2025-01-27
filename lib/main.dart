@@ -32,7 +32,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'HEROMinds',
+      title: 'herominds',
       home: MainScreen(),
     );
   }

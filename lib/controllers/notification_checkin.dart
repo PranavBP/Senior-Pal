@@ -42,43 +42,43 @@ class NotificationService {
   }
 
   // Schedule Notification to repeat daily
-  Future<void> scheduleNotification({
-    required String title,
-    required String body,
-    required TimeOfDay scheduledTime,
-    String? payload,
-  }) async {
-    try {
-      // Get the current date and combine it with the selected time
-      final now = DateTime.now();
-      final scheduledNotificationDateTime = DateTime(
-        now.year,
-        now.month,
-        now.day,
-        scheduledTime.hour,
-        scheduledTime.minute,
-      );
+  // Future<void> scheduleNotification({
+  //   required String title,
+  //   required String body,
+  //   required TimeOfDay scheduledTime,
+  //   String? payload,
+  // }) async {
+  //   try {
+  //     // Get the current date and combine it with the selected time
+  //     final now = DateTime.now();
+  //     final scheduledNotificationDateTime = DateTime(
+  //       now.year,
+  //       now.month,
+  //       now.day,
+  //       scheduledTime.hour,
+  //       scheduledTime.minute,
+  //     );
 
-      // Convert to TZDateTime
-      final tz.TZDateTime scheduledTimeZone =
-          tz.TZDateTime.from(scheduledNotificationDateTime, tz.local);
+  //     // Convert to TZDateTime
+  //     final tz.TZDateTime scheduledTimeZone =
+  //         tz.TZDateTime.from(scheduledNotificationDateTime, tz.local);
 
-      // Schedule the notification
-      await notificationsPlugin.zonedSchedule(
-        0, // Notification ID
-        title,
-        body,
-        scheduledTimeZone,
-        notificationDetails(),
-        androidAllowWhileIdle: false, // Focus on iOS for now
-        payload: payload,
-        uiLocalNotificationDateInterpretation:
-            UILocalNotificationDateInterpretation.wallClockTime,
-        // Repeat every 24 hours
-        matchDateTimeComponents: DateTimeComponents.time,
-      );
-    } catch (e) {
-      print('Error scheduling notification: $e');
-    }
-  }
+  //     // Schedule the notification
+  //     await notificationsPlugin.zonedSchedule(
+  //       0, // Notification ID
+  //       title,
+  //       body,
+  //       scheduledTimeZone,
+  //       notificationDetails(),
+  //       androidAllowWhileIdle: false, // Focus on iOS for now
+  //       payload: payload,
+  //       uiLocalNotificationDateInterpretation:
+  //           UILocalNotificationDateInterpretation.wallClockTime,
+  //       // Repeat every 24 hours
+  //       matchDateTimeComponents: DateTimeComponents.time,
+  //     );
+  //   } catch (e) {
+  //     print('Error scheduling notification: $e');
+  //   }
+  // }
 }

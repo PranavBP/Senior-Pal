@@ -50,24 +50,24 @@ class ConfigureNotificationScreenState
   }
 
   // Schedule the notification
-  void _scheduleNotification() {
-    if (_selectedTime != null) {
-      _notificationService.scheduleNotification(
-        title: 'Daily Check-in Notification',
-        body: 'Complete your daily check-in notification.',
-        scheduledTime: _selectedTime!,
-        payload: 'navigate_to_daily_check_in',
-      );
+  // void _scheduleNotification() {
+  //   if (_selectedTime != null) {
+  //     _notificationService.scheduleNotification(
+  //       title: 'Daily Check-in Notification',
+  //       body: 'Complete your daily check-in notification.',
+  //       scheduledTime: _selectedTime!,
+  //       payload: 'navigate_to_daily_check_in',
+  //     );
 
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Daily Check-in Notification Scheduled!')),
-      );
-    } else {
-      ScaffoldMessenger.of(context).showSnackBar(
-        SnackBar(content: Text('Please select a time.')),
-      );
-    }
-  }
+  //     ScaffoldMessenger.of(context).showSnackBar(
+  //       SnackBar(content: Text('Daily Check-in Notification Scheduled!')),
+  //     );
+  //   } else {
+  //     ScaffoldMessenger.of(context).showSnackBar(
+  //       SnackBar(content: Text('Please select a time.')),
+  //     );
+  //   }
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -141,7 +141,7 @@ class ConfigureNotificationScreenState
                   ),
                   minimumSize: Size(double.infinity, 60), // Make button wider
                 ),
-                onPressed: _scheduleNotification,
+                onPressed: (){},
                 child: Text(
                   'Get Notifications',
                   style: TextStyle(
