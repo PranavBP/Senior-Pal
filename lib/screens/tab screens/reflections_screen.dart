@@ -5,6 +5,7 @@ import '../../provider/theme_provider.dart';
 import '../../controllers/reflection_controller.dart';
 import '../../models/reflection.dart';
 import '../../models/theme.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import '../../widgets/Reflections/past_reflections_screen.dart';
 import 'package:hero_minds/widgets/Reflections/reflection_list_view.dart';
 
@@ -64,38 +65,92 @@ class _ReflectionsScreenState extends ConsumerState<ReflectionsScreen> {
     setState(() {}); // Trigger UI update to enable/disable Cancel button
   }
 
-  void saveReflection() {
+  // void saveReflection() {
+  //   if (titleController.text.isEmpty || contentController.text.isEmpty) {
+  //     // Show an error if fields are empty
+  //     ScaffoldMessenger.of(context).showSnackBar(
+  //       const SnackBar(
+  //         content: Text('Please fill in all fields before saving.'),
+  //         duration: Duration(seconds: 2),
+  //       ),
+  //     );
+  //     return; // Exit the function if validation fails
+  //   }
+
+  //   try {
+  //     final reflectionListNotifier = ref.read(reflectionListProvider.notifier);
+
+  //     final newReflection = widget.reflection?.copyWith(
+  //           title: titleController.text,
+  //           content: contentController.text,
+  //           mood: selectedMood,
+  //         ) ??
+  //         Reflection(
+  //           id: DateTime.now().toString(),
+  //           title: titleController.text,
+  //           content: contentController.text,
+  //           createdAt: DateTime.now(),
+  //           mood: selectedMood,
+  //         );
+
+  //     if (isEditing) {
+  //       reflectionListNotifier.updateReflection(newReflection);
+  //     } else {
+  //       reflectionListNotifier.addReflection(newReflection);
+  //     }
+
+  //     ScaffoldMessenger.of(context).showSnackBar(
+  //       const SnackBar(content: Text('Reflection saved successfully!')),
+  //     );
+
+  //     clearFields();
+  //   } catch (e) {
+  //     ScaffoldMessenger.of(context).showSnackBar(
+  //       const SnackBar(content: Text('Failed to save reflection.')),
+  //     );
+  //   }
+  // }
+
+  //-------new code for DB-----//
+  void saveReflection() async {
     if (titleController.text.isEmpty || contentController.text.isEmpty) {
-      // Show an error if fields are empty
       ScaffoldMessenger.of(context).showSnackBar(
         const SnackBar(
           content: Text('Please fill in all fields before saving.'),
           duration: Duration(seconds: 2),
         ),
       );
-      return; // Exit the function if validation fails
+      return;
     }
 
     try {
-      final reflectionListNotifier = ref.read(reflectionListProvider.notifier);
+      final reflectionController = ref.read(reflectionControllerProvider);
+      final userId = FirebaseAuth.instance.currentUser?.uid;
+
+      if (userId == null) {
+        ScaffoldMessenger.of(context).showSnackBar(
+          const SnackBar(content: Text('User not authenticated!')),
+        );
+        return;
+      }
 
       final newReflection = widget.reflection?.copyWith(
             title: titleController.text,
             content: contentController.text,
-            mood: selectedMood,
+            mood: selectedMood ?? '', // Ensure non-null value
           ) ??
           Reflection(
-            id: DateTime.now().toString(),
+            id: DateTime.now().millisecondsSinceEpoch.toString(),
             title: titleController.text,
             content: contentController.text,
             createdAt: DateTime.now(),
-            mood: selectedMood,
+            mood: selectedMood ?? '', // Default to empty string if null
           );
 
       if (isEditing) {
-        reflectionListNotifier.updateReflection(newReflection);
+        await reflectionController.updateReflection(newReflection);
       } else {
-        reflectionListNotifier.addReflection(newReflection);
+        await reflectionController.addReflection(newReflection);
       }
 
       ScaffoldMessenger.of(context).showSnackBar(

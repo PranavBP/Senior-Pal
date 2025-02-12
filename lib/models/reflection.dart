@@ -1,18 +1,18 @@
 // lib/models/reflection.dart
 
 class Reflection {
-  final String? id;
+  final String id;
   final String title;
   final String content;
   final DateTime createdAt;
-  final String? mood; // Add mood as a nullable String field
+  final String mood; // Add mood as a nullable String field
 
   Reflection({
-    this.id,
+    required this.id,
     required this.title,
     required this.content,
     required this.createdAt,
-    this.mood, // Include mood in the constructor
+    required this.mood, // Include mood in the constructor
   });
 
   Map<String, dynamic> toMap() {
