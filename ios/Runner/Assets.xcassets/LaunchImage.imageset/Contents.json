@@ -1,17 +1,17 @@
 {
   "images" : [
     {
-      "filename" : "MellowingMindTreeHERO3.png",
+      "filename" : "app_icon_500.png",
       "idiom" : "universal",
       "scale" : "1x"
     },
     {
-      "filename" : "MellowingMindTreeHERO3 1.png",
+      "filename" : "app_icon_500 1.png",
       "idiom" : "universal",
       "scale" : "2x"
     },
     {
-      "filename" : "MellowingMindTreeHERO3 2.png",
+      "filename" : "app_icon_500 2.png",
       "idiom" : "universal",
       "scale" : "3x"
     }
